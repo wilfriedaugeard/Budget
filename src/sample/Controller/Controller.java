@@ -13,12 +13,13 @@ public class Controller implements IController{
     private ICategory revenuesCategory;
     private ICategory depensesCategory;
 
-
+    /* Constructor */
     public Controller (){
         globalPeriode = new ArrayList<>();
         initializeModel();
     }
 
+    /* Initialize methods */
     @Override
     public void initializeView() {
 
@@ -42,7 +43,6 @@ public class Controller implements IController{
         }
     }
 
-
     public void initializePeriode(){
         List<String> listMois = Arrays.asList("janvier","fevrier","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre");
         IPeriode annee2020 = PeriodeFactory.createYear("2020");
@@ -54,5 +54,19 @@ public class Controller implements IController{
         }
         globalPeriode.add(annee2020);
         globalPeriode.add(annee2021);
+    }
+
+    /* Getters */
+
+    public ArrayList<IPeriode> getGlobalPeriode() {
+        return globalPeriode;
+    }
+
+    public ICategory getRevenuesCategory() {
+        return revenuesCategory;
+    }
+
+    public ICategory getDepensesCategory() {
+        return depensesCategory;
     }
 }

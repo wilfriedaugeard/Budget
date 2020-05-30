@@ -2,7 +2,7 @@ package sample.Model;
 
 public class Montant {
     private double value;
-    private ICategory category;
+    private final ICategory category;
 
     public Montant(ICategory category, double value) {
         this.value = value;
