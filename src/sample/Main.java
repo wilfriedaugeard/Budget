@@ -15,24 +15,13 @@ import sample.Controller.IController;
 import sample.Model.*;
 
 public class Main extends Application {
-    final static String austria = "Austria";
-    final static String brazil = "Brazil";
-    final static String france = "France";
-    final static String italy = "Italy";
-    final static String usa = "USA";
-
-
-
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Scene.fxml"));
-        primaryStage.setTitle("Budget");
-        Scene scene  = new Scene(root,800,600);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
         IController controller = new Controller();
+        controller.initializeView();
+
+        primaryStage.setScene(controller.getScene());
+        primaryStage.show();
 
 
     }

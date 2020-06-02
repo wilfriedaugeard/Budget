@@ -1,28 +1,32 @@
 package sample.Controller;
 
+import javafx.scene.Scene;
 import sample.Factory.CategoryFactory;
 import sample.Factory.PeriodeFactory;
 import sample.Model.*;
+import sample.View.View;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Controller implements IController{
+    private View view;
     private ArrayList<IPeriode> globalPeriode;
     private ICategory revenuesCategory;
     private ICategory depensesCategory;
 
     /* Constructor */
-    public Controller (){
+    public Controller () {
         globalPeriode = new ArrayList<>();
         initializeModel();
     }
 
     /* Initialize methods */
     @Override
-    public void initializeView() {
-
+    public void initializeView() throws IOException {
+        view = new View("Scene.fxml", 600, 400);
     }
 
     public void initializeModel(){
@@ -68,5 +72,14 @@ public class Controller implements IController{
 
     public ICategory getDepensesCategory() {
         return depensesCategory;
+    }
+
+    public View getView() {
+        return view;
+    }
+
+    @Override
+    public Scene getScene(){
+        return view.getScene();
     }
 }
