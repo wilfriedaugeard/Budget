@@ -1,26 +1,76 @@
 package sample.Controller;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import sample.Factory.CategoryFactory;
 import sample.Factory.PeriodeFactory;
 import sample.Model.*;
 import sample.View.View;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class Controller implements IController{
+public class Controller implements IController, Initializable {
     private View view;
+    private int date;;
     private ArrayList<IPeriode> globalPeriode;
     private ICategory revenuesCategory;
     private ICategory depensesCategory;
 
+
+    // VIEW
+    @FXML
+    private Label dateLabel;
+
     /* Constructor */
     public Controller () {
         globalPeriode = new ArrayList<>();
+        dateTreatment();
         initializeModel();
+    }
+
+    @Override
+    @FXML
+    public void nextMonth(){
+        date++;
+        setDisplayMonth();
+    }
+
+    @Override
+    @FXML
+    public void previousMonth(){
+        date--;
+        setDisplayMonth();
+    }
+
+    public void setDisplayMonth(){
+        String year = globalPeriode.get(0).getName();
+        if(date == 0)
+            date = 12;
+        if(date == 13)
+            date = 1;
+        String month = globalPeriode.get(0).getChildren().get(date-1).getName();
+        String date = month +" "+year;
+        dateLabel.setText(date);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setDisplayMonth();
+    }
+
+
+    public void dateTreatment(){
+        long millis=System.currentTimeMillis();
+        String today = new java.sql.Date(millis).toString();
+        String[] arrayDate = today.split("-");
+        this.date = Integer.parseInt(arrayDate[1]);
     }
 
     /* Initialize methods */

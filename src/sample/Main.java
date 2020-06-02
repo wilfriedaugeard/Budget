@@ -23,7 +23,6 @@ public class Main extends Application {
         primaryStage.setScene(controller.getScene());
         primaryStage.show();
 
-
     }
 
 

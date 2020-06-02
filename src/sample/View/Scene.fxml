@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Controller">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
          <bottom>
@@ -119,18 +120,18 @@
                      <top>
                         <HBox alignment="CENTER" prefHeight="34.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: f0f0f0; -fx-border-width: 1px; -fx-border-color: #000;" BorderPane.alignment="CENTER">
                            <children>
-                              <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="15.0" fitWidth="20.0" onMouseClicked="#previousMonth" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@assets/left_arrow.png" />
+                                    <Image url="@../assets/left_arrow.png" />
                                  </image>
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label fx:id="month" alignment="CENTER" contentDisplay="CENTER" text="Mars" />
-                              <ImageView fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" text="Mars" />
+                              <ImageView fx:id="rightArrow" fitHeight="15.0" fitWidth="20.0" onMouseClicked="#nextMonth" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@assets/right_arrow.png" />
+                                    <Image url="@../assets/right_arrow.png" />
                                  </image>
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
