@@ -18,7 +18,10 @@ import java.util.ResourceBundle;
 
 public class Controller implements IController, Initializable {
     private View view;
-    private int date;;
+    private int monthCursor;
+    private int yearCursor;
+    private int currentMonthCursor;
+    private int currentYearCursor;
     private ArrayList<IPeriode> globalPeriode;
     private ICategory revenuesCategory;
     private ICategory depensesCategory;
@@ -27,6 +30,12 @@ public class Controller implements IController, Initializable {
     // VIEW
     @FXML
     private Label dateLabel;
+    @FXML
+    private Label revenuesLabel;
+    @FXML
+    private Label depensesLabel;
+    @FXML
+    private Label epargnesLabel;
 
     /* Constructor */
     public Controller () {
@@ -38,26 +47,57 @@ public class Controller implements IController, Initializable {
     @Override
     @FXML
     public void nextMonth(){
-        date++;
+        monthCursor++;
+        if(monthCursor == 12){
+            monthCursor = 0;
+            nextYear();
+        }
         setDisplayMonth();
     }
 
     @Override
     @FXML
     public void previousMonth(){
-        date--;
+        monthCursor--;
+        if(monthCursor < 0){
+            monthCursor = 11;
+            previousYear();
+        }
         setDisplayMonth();
     }
 
+    public void nextYear(){
+        yearCursor++;
+        if(yearCursor >= globalPeriode.size())
+            yearCursor = 0;
+    }
+    public void previousYear(){
+        yearCursor--;
+        if(yearCursor < 0)
+            yearCursor = globalPeriode.size();
+    }
+
     public void setDisplayMonth(){
-        String year = globalPeriode.get(0).getName();
-        if(date == 0)
-            date = 12;
-        if(date == 13)
-            date = 1;
-        String month = globalPeriode.get(0).getChildren().get(date-1).getName();
-        String date = month +" "+year;
+        String yearString = globalPeriode.get(yearCursor).getName();
+        String monthString = globalPeriode.get(yearCursor).getChild(monthCursor).getName();
+        String date = monthString +" "+yearString;
         dateLabel.setText(date);
+
+        setDisplayMonthRecap();
+    }
+
+
+    public void setDisplayMonthRecap(){
+        IPeriode month = globalPeriode.get(yearCursor).getChild(monthCursor);
+        double revenues = month.getRevenues();
+        revenuesLabel.setText(Double.toString(revenues));
+
+        double depenses = month.getDepenses();
+        depensesLabel.setText(Double.toString(depenses));
+
+        double epargnes = month.getEpargne();
+        epargnesLabel.setText(Double.toString(epargnes));
+
     }
 
     @Override
@@ -70,7 +110,10 @@ public class Controller implements IController, Initializable {
         long millis=System.currentTimeMillis();
         String today = new java.sql.Date(millis).toString();
         String[] arrayDate = today.split("-");
-        this.date = Integer.parseInt(arrayDate[1]);
+        this.monthCursor = Integer.parseInt(arrayDate[1])-1;
+        this.yearCursor = 0;
+        this.currentMonthCursor = monthCursor;
+        this.currentYearCursor = yearCursor;
     }
 
     /* Initialize methods */

@@ -118,7 +118,7 @@
                <items>
                   <BorderPane prefWidth="200.0">
                      <top>
-                        <HBox alignment="CENTER" prefHeight="34.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: f0f0f0; -fx-border-width: 1px; -fx-border-color: #000;" BorderPane.alignment="CENTER">
+                        <HBox alignment="CENTER" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: f0f0f0; -fx-border-width: 1px; -fx-border-color: #000;" BorderPane.alignment="CENTER">
                            <children>
                               <ImageView fitHeight="15.0" fitWidth="20.0" onMouseClicked="#previousMonth" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -160,19 +160,19 @@
                               <Label prefHeight="8.0" prefWidth="79.0" text="REVENUES :" GridPane.halignment="CENTER" />
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <children>
-                                    <Label text="Label" />
+                                    <Label fx:id="revenuesLabel" text="Label" />
                                     <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="20.0" text="€" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <Label text="Label" />
+                                    <Label fx:id="depensesLabel" text="Label" />
                                     <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="15.0" prefWidth="20.0" text="€" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <Label text="Label" />
+                                    <Label fx:id="epargnesLabel" text="Label" />
                                     <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="15.0" prefWidth="20.0" text="€" />
                                  </children>
                               </HBox>
