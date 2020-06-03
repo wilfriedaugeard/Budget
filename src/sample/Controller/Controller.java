@@ -36,6 +36,16 @@ public class Controller implements IController, Initializable {
     private Label depensesLabel;
     @FXML
     private Label epargnesLabel;
+    @FXML
+    private Label currentRevenues;
+    @FXML
+    private Label currentDepenses;
+    @FXML
+    private Label currentEpargnes;
+    @FXML
+    private Label currentBudget;
+    @FXML
+    private Label epargnesTotal;
 
     /* Constructor */
     public Controller () {
@@ -83,21 +93,40 @@ public class Controller implements IController, Initializable {
         String date = monthString +" "+yearString;
         dateLabel.setText(date);
 
-        setDisplayMonthRecap();
+        displayMonthRecap();
+        displayCurrentmonth();
     }
 
 
-    public void setDisplayMonthRecap(){
+    public void displayMonthRecap(){
         IPeriode month = globalPeriode.get(yearCursor).getChild(monthCursor);
         double revenues = month.getRevenues();
-        revenuesLabel.setText(Double.toString(revenues));
-
         double depenses = month.getDepenses();
-        depensesLabel.setText(Double.toString(depenses));
-
         double epargnes = month.getEpargne();
+        revenuesLabel.setText(Double.toString(revenues));
+        depensesLabel.setText(Double.toString(depenses));
         epargnesLabel.setText(Double.toString(epargnes));
+    }
 
+    public void displayCurrentmonth(){
+        IPeriode month = globalPeriode.get(currentYearCursor).getChild(currentMonthCursor);
+        double revenues = month.getRevenues();
+        double depenses = month.getDepenses();
+        double epargnes = month.getEpargne();
+        double budget = month.getBudget();
+        currentRevenues.setText(Double.toString(revenues));
+        currentDepenses.setText(Double.toString(depenses));
+        currentEpargnes.setText(Double.toString(epargnes));
+        currentBudget.setText(Double.toString(budget));
+        epargnesTotal.setText(Double.toString(computeEpargneTotal()));
+    }
+
+    public double computeEpargneTotal(){
+        double res = 0;
+        for(IPeriode child : globalPeriode){
+            res += child.getEpargne();
+        }
+        return res;
     }
 
     @Override

@@ -44,6 +44,11 @@ public class Year implements IPeriode{
     }
 
     @Override
+    public double getBudget() {
+        return 0;
+    }
+
+    @Override
     public void addRevenues(Montant r) {
 
     }
@@ -55,6 +60,16 @@ public class Year implements IPeriode{
 
     @Override
     public void addEpargne(double e) {
+
+    }
+
+    @Override
+    public void addCharges(Montant c) {
+
+    }
+
+    @Override
+    public void removeCharges(Montant c) {
 
     }
 

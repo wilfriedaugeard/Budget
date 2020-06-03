@@ -7,10 +7,13 @@ public interface IPeriode {
     public double getRevenues();
     public double getDepenses();
     public double getEpargne();
+    public double getBudget();
 
     public void addRevenues(Montant r);
     public void addDepenses(Montant d);
     public void addEpargne(double e);
+    public void addCharges(Montant c);
+    public void removeCharges(Montant c);
 
     /* Composite pattern */
     public void addPeriode(IPeriode periode);
