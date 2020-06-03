@@ -9,6 +9,7 @@ import java.io.IOException;
 public class View {
     private Scene scene;
     private Parent root;
+    private FXMLLoader fxmlLoader;
     private int width;
     private int height;
 
@@ -19,8 +20,8 @@ public class View {
         this.width = width;
         this.height = height;
 
-
-        this.root = FXMLLoader.load(getClass().getResource(fxml_file));
+        this.fxmlLoader = new FXMLLoader(getClass().getResource(fxml_file));
+        this.root = fxmlLoader.load();
         this.scene = new Scene(root,width, height);
     }
 
@@ -28,6 +29,10 @@ public class View {
 
     public Scene getScene() {
         return scene;
+    }
+
+    public FXMLLoader getFxmlLoader() {
+        return fxmlLoader;
     }
 
     public void setScene(Scene scene) {

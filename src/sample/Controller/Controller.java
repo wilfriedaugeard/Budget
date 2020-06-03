@@ -1,7 +1,9 @@
 package sample.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import sample.Factory.CategoryFactory;
@@ -16,15 +18,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Controller implements IController, Initializable {
+public class Controller implements IController {
     private View view;
     private int monthCursor;
     private int yearCursor;
     private int currentMonthCursor;
     private int currentYearCursor;
-    private ArrayList<IPeriode> globalPeriode;
+    private final ArrayList<IPeriode> globalPeriode;
     private ICategory revenuesCategory;
     private ICategory depensesCategory;
+    private Displayer displayer;
 
 
     // VIEW
@@ -62,7 +65,7 @@ public class Controller implements IController, Initializable {
             monthCursor = 0;
             nextYear();
         }
-        setDisplayMonth();
+        //setDisplayMonth();
     }
 
     @Override
@@ -73,7 +76,7 @@ public class Controller implements IController, Initializable {
             monthCursor = 11;
             previousYear();
         }
-        setDisplayMonth();
+        //setDisplayMonth();
     }
 
     public void nextYear(){
@@ -86,7 +89,7 @@ public class Controller implements IController, Initializable {
         if(yearCursor < 0)
             yearCursor = globalPeriode.size();
     }
-
+/*
     public void setDisplayMonth(){
         String yearString = globalPeriode.get(yearCursor).getName();
         String monthString = globalPeriode.get(yearCursor).getChild(monthCursor).getName();
@@ -95,7 +98,7 @@ public class Controller implements IController, Initializable {
 
         displayMonthRecap();
         displayCurrentmonth();
-    }
+    }*/
 
 
     public void displayMonthRecap(){
@@ -129,10 +132,10 @@ public class Controller implements IController, Initializable {
         return res;
     }
 
-    @Override
+    /*@Override
     public void initialize(URL location, ResourceBundle resources) {
         setDisplayMonth();
-    }
+    }*/
 
 
     public void dateTreatment(){
@@ -149,6 +152,10 @@ public class Controller implements IController, Initializable {
     @Override
     public void initializeView() throws IOException {
         view = new View("Scene.fxml", 600, 400);
+        FXMLLoader fxmlLoader = view.getFxmlLoader();
+        displayer = fxmlLoader.getController();
+        displayer.setController(this);
+        displayer.setDisplayMonth();
     }
 
     public void initializeModel(){
@@ -183,17 +190,36 @@ public class Controller implements IController, Initializable {
     }
 
     /* Getters */
-
+    @Override
     public ArrayList<IPeriode> getGlobalPeriode() {
         return globalPeriode;
     }
 
+    @Override
     public ICategory getRevenuesCategory() {
         return revenuesCategory;
     }
 
+    @Override
     public ICategory getDepensesCategory() {
         return depensesCategory;
+    }
+
+    @Override
+    public int getMonthCursor() {
+        return monthCursor;
+    }
+    @Override
+    public int getYearCursor() {
+        return yearCursor;
+    }
+    @Override
+    public int getCurrentMonthCursor() {
+        return currentMonthCursor;
+    }
+    @Override
+    public int getCurrentYearCursor() {
+        return currentYearCursor;
     }
 
     public View getView() {
