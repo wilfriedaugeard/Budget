@@ -4,9 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import sample.Model.IPeriode;
-import sample.View.View;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,7 +34,7 @@ public class Displayer implements Initializable {
 
     }
 
-    @FXML
+
     public void setDisplayMonth(){
         String yearString = controller.getGlobalPeriode().get(controller.getYearCursor()).getName();
         String monthString = controller.getGlobalPeriode().get(controller.getYearCursor()).getChild(controller.getMonthCursor()).getName();
@@ -48,7 +45,7 @@ public class Displayer implements Initializable {
         displayCurrentmonth();
     }
 
-    @FXML
+
     public void displayMonthRecap(){
         IPeriode month = controller.getGlobalPeriode().get(controller.getYearCursor()).getChild(controller.getMonthCursor());
         double revenues = month.getRevenues();
@@ -59,7 +56,6 @@ public class Displayer implements Initializable {
         epargnesLabel.setText(Double.toString(epargnes));
     }
 
-    @FXML
     public void displayCurrentmonth(){
         IPeriode month = controller.getGlobalPeriode().get(controller.getCurrentYearCursor()).getChild(controller.getCurrentMonthCursor());
         double revenues = month.getRevenues();
@@ -70,15 +66,7 @@ public class Displayer implements Initializable {
         currentDepenses.setText(Double.toString(depenses));
         currentEpargnes.setText(Double.toString(epargnes));
         currentBudget.setText(Double.toString(budget));
-        epargnesTotal.setText(Double.toString(computeEpargneTotal()));
-    }
-
-    public double computeEpargneTotal(){
-        double res = 0;
-        for(IPeriode child : controller.getGlobalPeriode()){
-            res += child.getEpargne();
-        }
-        return res;
+        epargnesTotal.setText(Double.toString(controller.computeEpargneTotal()));
     }
 
     @FXML
@@ -92,7 +80,7 @@ public class Displayer implements Initializable {
         controller.previousMonth();
         setDisplayMonth();
     }
-    
+
     public void setController(IController controller) {
         this.controller = controller;
     }

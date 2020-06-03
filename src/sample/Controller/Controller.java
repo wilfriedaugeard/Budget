@@ -65,7 +65,6 @@ public class Controller implements IController {
             monthCursor = 0;
             nextYear();
         }
-        //setDisplayMonth();
     }
 
     @Override
@@ -76,7 +75,6 @@ public class Controller implements IController {
             monthCursor = 11;
             previousYear();
         }
-        //setDisplayMonth();
     }
 
     public void nextYear(){
@@ -89,41 +87,9 @@ public class Controller implements IController {
         if(yearCursor < 0)
             yearCursor = globalPeriode.size();
     }
-/*
-    public void setDisplayMonth(){
-        String yearString = globalPeriode.get(yearCursor).getName();
-        String monthString = globalPeriode.get(yearCursor).getChild(monthCursor).getName();
-        String date = monthString +" "+yearString;
-        dateLabel.setText(date);
-
-        displayMonthRecap();
-        displayCurrentmonth();
-    }*/
 
 
-    public void displayMonthRecap(){
-        IPeriode month = globalPeriode.get(yearCursor).getChild(monthCursor);
-        double revenues = month.getRevenues();
-        double depenses = month.getDepenses();
-        double epargnes = month.getEpargne();
-        revenuesLabel.setText(Double.toString(revenues));
-        depensesLabel.setText(Double.toString(depenses));
-        epargnesLabel.setText(Double.toString(epargnes));
-    }
-
-    public void displayCurrentmonth(){
-        IPeriode month = globalPeriode.get(currentYearCursor).getChild(currentMonthCursor);
-        double revenues = month.getRevenues();
-        double depenses = month.getDepenses();
-        double epargnes = month.getEpargne();
-        double budget = month.getBudget();
-        currentRevenues.setText(Double.toString(revenues));
-        currentDepenses.setText(Double.toString(depenses));
-        currentEpargnes.setText(Double.toString(epargnes));
-        currentBudget.setText(Double.toString(budget));
-        epargnesTotal.setText(Double.toString(computeEpargneTotal()));
-    }
-
+    @Override
     public double computeEpargneTotal(){
         double res = 0;
         for(IPeriode child : globalPeriode){
@@ -131,11 +97,6 @@ public class Controller implements IController {
         }
         return res;
     }
-
-    /*@Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setDisplayMonth();
-    }*/
 
 
     public void dateTreatment(){

@@ -22,4 +22,6 @@ public interface IController {
     public int getCurrentMonthCursor();
     public int getCurrentYearCursor();
 
+    public double computeEpargneTotal();
+
 }
