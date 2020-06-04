@@ -1,7 +1,6 @@
 package sample.Controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import sample.Factory.CategoryFactory;
@@ -182,6 +181,7 @@ public class Controller implements IController {
         return currentYearCursor;
     }
 
+    @Override
     public View getView() {
         return view;
     }

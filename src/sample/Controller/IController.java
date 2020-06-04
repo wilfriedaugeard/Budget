@@ -3,6 +3,7 @@ package sample.Controller;
 import javafx.scene.Scene;
 import sample.Model.ICategory;
 import sample.Model.IPeriode;
+import sample.View.View;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public interface IController {
     public void initializeView() throws IOException;
     public Scene getScene();
+    public View getView();
 
     public void nextMonth();
     public void previousMonth();

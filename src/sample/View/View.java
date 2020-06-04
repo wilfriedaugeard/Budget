@@ -19,9 +19,7 @@ public class View {
     public View(String fxml_file, int width, int height) throws IOException {
         this.width = width;
         this.height = height;
-
-        this.fxmlLoader = new FXMLLoader(getClass().getResource(fxml_file));
-        this.root = fxmlLoader.load();
+        loadFXML(fxml_file);
         this.scene = new Scene(root,width, height);
     }
 
@@ -33,6 +31,11 @@ public class View {
 
     public FXMLLoader getFxmlLoader() {
         return fxmlLoader;
+    }
+
+    public void loadFXML(String fxml_file) throws IOException {
+        this.fxmlLoader = new FXMLLoader(getClass().getResource(fxml_file));
+        this.root = fxmlLoader.load();
     }
 
     public void setScene(Scene scene) {

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Displayer">
+<AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Displayer">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
          <bottom>
@@ -185,12 +185,7 @@
                   </BorderPane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="250.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="250.0" text="Ajouter une dépense / un revenu" textAlignment="CENTER">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="10.0" mnemonicParsing="false" prefWidth="250.0" text="Ajuster le solde / épargne" textAlignment="CENTER">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadAjouterWindow" prefWidth="250.0" text="Ajouter / Ajuster" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" />
                            </VBox.margin>

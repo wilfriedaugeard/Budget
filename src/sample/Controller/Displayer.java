@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.Model.IPeriode;
 
@@ -17,6 +18,8 @@ import java.util.ResourceBundle;
 public class Displayer implements Initializable {
     private IController controller;
     // VIEW
+    @FXML
+    private AnchorPane rootPane;
     @FXML
     private Label dateLabel;
     @FXML
@@ -89,8 +92,9 @@ public class Displayer implements Initializable {
     }
 
     @FXML
-    public void loadAjouterWindow(ActionEvent event) throws IOException {
-
+    public void loadAjouterWindow() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../View/Ajouter.fxml"));
+        rootPane.getChildren().setAll(pane);
     }
 
     public void setController(IController controller) {
