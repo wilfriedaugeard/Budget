@@ -42,6 +42,7 @@ public class Displayer implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         controller = Controller.getController();
+        setDisplayMonth();
     }
 
 
