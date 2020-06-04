@@ -44,14 +44,14 @@
                                       </rowConstraints>
                                        <children>
                                           <Label text="Montant :" />
-                                          <ChoiceBox prefHeight="22.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <ChoiceBox fx:id="revenusChoiceBox" prefHeight="22.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <Label alignment="CENTER" contentDisplay="CENTER" text="€" GridPane.columnIndex="2">
                                              <padding>
                                                 <Insets left="5.0" right="5.0" />
                                              </padding>
                                           </Label>
                                           <Label text="Catégorie :" GridPane.rowIndex="1" />
-                                          <TextField prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" />
+                                          <TextField fx:id="revenusTextField" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" />
                                           <Button mnemonicParsing="false" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="5.0" right="5.0" />
@@ -71,14 +71,14 @@
                                     <GridPane>
                                        <children>
                                           <Label text="Montant :" />
-                                          <ChoiceBox prefHeight="22.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <ChoiceBox fx:id="depensesChoiceBox" prefHeight="22.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <Label alignment="CENTER" contentDisplay="CENTER" text="€" GridPane.columnIndex="2">
                                              <padding>
                                                 <Insets left="5.0" right="5.0" />
                                              </padding>
                                           </Label>
                                           <Label text="Catégorie :" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" />
+                                          <TextField fx:id="depensesTextField" GridPane.columnIndex="1" />
                                           <Button mnemonicParsing="false" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="5.0" right="5.0" />
