@@ -2,8 +2,6 @@ package sample.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import sample.Factory.CategoryFactory;
@@ -12,11 +10,10 @@ import sample.Model.*;
 import sample.View.View;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
+
 
 public class Controller implements IController {
     private View view;
@@ -51,14 +48,21 @@ public class Controller implements IController {
     private Label epargnesTotal;
 
     /* Constructor */
-    public Controller () {
+    /* Singleton */
+    private Controller () {
         globalPeriode = new ArrayList<>();
         dateTreatment();
         initializeModel();
     }
+    private static IController INSTANCE = null;
+
+    public static IController getController(){
+        if(INSTANCE == null)
+            INSTANCE = new Controller();
+        return INSTANCE;
+    }
 
     @Override
-    @FXML
     public void nextMonth(){
         monthCursor++;
         if(monthCursor == 12){
@@ -68,7 +72,6 @@ public class Controller implements IController {
     }
 
     @Override
-    @FXML
     public void previousMonth(){
         monthCursor--;
         if(monthCursor < 0){
@@ -113,10 +116,6 @@ public class Controller implements IController {
     @Override
     public void initializeView() throws IOException {
         view = new View("Scene.fxml", 600, 400);
-        FXMLLoader fxmlLoader = view.getFxmlLoader();
-        displayer = fxmlLoader.getController();
-        displayer.setController(this);
-        displayer.setDisplayMonth();
     }
 
     public void initializeModel(){

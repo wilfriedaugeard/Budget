@@ -17,7 +17,7 @@ import sample.Model.*;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        IController controller = new Controller();
+        IController controller = Controller.getController();
         controller.initializeView();
 
         primaryStage.setScene(controller.getScene());
