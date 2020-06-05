@@ -31,8 +31,8 @@
                                     </Label>
                                     <GridPane>
                                       <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="119.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="131.0" prefWidth="145.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="133.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="131.0" prefWidth="132.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="85.0" prefWidth="254.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                                       </columnConstraints>
@@ -91,11 +91,18 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </GridPane.margin>
                                           </Button>
-                                          <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" text="Ajouter" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouterDepenses" text="Ajouter" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <Label fx:id="nouvelleDepenseLabel" prefHeight="15.0" prefWidth="128.0" text="Nouvelle dépense :" textFill="#aa2603" visible="false" GridPane.rowIndex="2" />
+                                          <Label fx:id="depenseAjouteLabel" alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="143.0" text="depenseAjouteLabel" textFill="#aa2603" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label fx:id="euroDepenseLabel" alignment="CENTER" contentDisplay="CENTER" text="€" textFill="#aa2603" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <padding>
+                                                <Insets left="5.0" right="5.0" />
+                                             </padding>
+                                          </Label>
                                        </children>
                                        <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="86.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="131.0" prefWidth="161.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="133.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="130.0" prefWidth="130.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="85.0" prefWidth="255.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                                        </columnConstraints>

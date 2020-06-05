@@ -21,6 +21,7 @@ public class AjouterController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
+    // Revenus section
     @FXML
     private TextField revenusTextField;
     @FXML
@@ -31,10 +32,18 @@ public class AjouterController implements Initializable {
     private Label revenuAjouteLabel;
     @FXML
     private Label euroRevenuLabel;
+    // Depenses section
     @FXML
     private TextField depensesTextField;
     @FXML
     private ChoiceBox<String> depensesChoiceBox;
+    @FXML
+    private Label nouvelleDepenseLabel;
+    @FXML
+    private Label depenseAjouteLabel;
+    @FXML
+    private Label euroDepenseLabel;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,6 +88,9 @@ public class AjouterController implements Initializable {
             int i = controller.getYearCursor();
             IPeriode m = controller.getGlobalPeriode().get(i).getChild(controller.getMonthCursor());
             m.addRevenues(new Montant(controller.getRevenuesCategory().getChild(choice), montant));
+            if(controller.getRevenuesCategory().getChild(choice).getName().equals("Mouvement épargne")){
+                m.addEpargne(-montant);
+            }
             System.out.println(controller.getRevenuesCategory().getChild(choice).getName());
             revenuAjouteLabel.setText(montantString);
 
@@ -87,6 +99,36 @@ public class AjouterController implements Initializable {
             euroRevenuLabel.setVisible(true);
 
             revenusTextField.clear();
+        }
+    }
+
+    @FXML
+    public void ajouterDepenses(){
+        String montantString = depensesTextField.getText();
+        if(!montantString.isEmpty()){
+            if(!montantString.matches("(\\d+([,]|[.])\\d+)|\\d+")){
+                revenusTextField.clear();
+                return;
+            }
+            montantString = montantString.replace(",",".");
+
+            double montant = Double.parseDouble(montantString);
+            if(montant == 0){
+                depensesTextField.clear();
+                return;
+            }
+            int choice = depensesChoiceBox.getSelectionModel().getSelectedIndex();
+            int i = controller.getYearCursor();
+            IPeriode m = controller.getGlobalPeriode().get(i).getChild(controller.getMonthCursor());
+            m.addDepenses(new Montant(controller.getDepensesCategory().getChild(choice), montant));
+            System.out.println(controller.getDepensesCategory().getChild(choice).getName());
+            depenseAjouteLabel.setText(montantString);
+
+            nouvelleDepenseLabel.setVisible(true);
+            depenseAjouteLabel.setVisible(true);
+            euroDepenseLabel.setVisible(true);
+
+            depensesTextField.clear();
         }
     }
 

@@ -16,6 +16,7 @@ import java.util.List;
 
 public class Controller implements IController {
     private View view;
+    private int year;
     private int monthCursor;
     private int yearCursor;
     private int currentMonthCursor;
@@ -81,13 +82,18 @@ public class Controller implements IController {
 
     public void nextYear(){
         yearCursor++;
-        if(yearCursor >= globalPeriode.size())
-            yearCursor = 0;
+        if(yearCursor >= globalPeriode.size()){
+            int yearToCreate = Integer.parseInt(globalPeriode.get(globalPeriode.size()-1).getName());
+            createYear(yearToCreate+1);
+        }
     }
     public void previousYear(){
         yearCursor--;
-        if(yearCursor < 0)
-            yearCursor = globalPeriode.size();
+        if(yearCursor < 0) {
+            int yearToCreate = Integer.parseInt(globalPeriode.get(0).getName());
+            createYear(yearToCreate-1);
+            yearCursor = 0;
+        }
     }
 
 
@@ -106,6 +112,7 @@ public class Controller implements IController {
         String today = new java.sql.Date(millis).toString();
         String[] arrayDate = today.split("-");
         this.monthCursor = Integer.parseInt(arrayDate[1])-1;
+        this.year = Integer.parseInt(arrayDate[0]);
         this.yearCursor = 0;
         this.currentMonthCursor = monthCursor;
         this.currentYearCursor = yearCursor;
@@ -123,8 +130,8 @@ public class Controller implements IController {
     }
 
     public void initializeCategory(){
-        List<String> revenuesList = Arrays.asList("Bourses","APL","Salaire","Pension alimentaire","Autres");
-        List<String> depensesList = Arrays.asList("Loyer","EDF","Eau","Abonnement/Forfait","Courses","Essences","Assurances","Restaurants/Bars","Autres");
+        List<String> revenuesList = Arrays.asList("Bourses","APL","Salaire","Pension alimentaire","Mouvement épargne","Autres");
+        List<String> depensesList = Arrays.asList("Loyer","EDF","Eau","Abonnement/Forfait","Courses","Essences","Assurances","Restaurants/Bars","Mouvement épargne","Autres");
         revenuesCategory = CategoryFactory.createGroupCategory("Revenues");
         depensesCategory = CategoryFactory.createGroupCategory("Depenses");
         for(String r : revenuesList){
@@ -135,17 +142,32 @@ public class Controller implements IController {
         }
     }
 
-    public void initializePeriode(){
-        List<String> listMois = Arrays.asList("janvier","fevrier","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre");
-        IPeriode annee2020 = PeriodeFactory.createYear("2020");
-        IPeriode annee2021 = PeriodeFactory.createYear("2021");
+    public void createYear(int yearToCreate){
+        List<String> listMois = Arrays.asList("janvier","février","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","décembre");
+        String anneeString = String.valueOf(yearToCreate);
+        IPeriode annee = PeriodeFactory.createYear(anneeString);
         for(String mois : listMois){
             IPeriode m = PeriodeFactory.createMonth(mois);
-            annee2020.addPeriode(m);
-            annee2021.addPeriode(m);
+            annee.addPeriode(m);
         }
-        globalPeriode.add(annee2020);
-        globalPeriode.add(annee2021);
+        for(int i=0; i<globalPeriode.size(); i++){
+            int yearToCompare = Integer.parseInt(globalPeriode.get(i).getName());
+            if(yearToCompare > yearToCreate){
+                globalPeriode.add(i, annee);
+                return;
+            }
+        }
+        globalPeriode.add(annee);
+    }
+
+    public void initializePeriode(){
+        int i = 0;
+        int y = year;
+        while (i<2){
+            createYear(y);
+            i++;
+            y++;
+        }
     }
 
     /* Getters */
