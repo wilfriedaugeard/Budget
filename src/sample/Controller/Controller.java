@@ -123,7 +123,7 @@ public class Controller implements IController {
     }
 
     public void initializeCategory(){
-        List<String> revenuesList = Arrays.asList("Bourses","APL","Salaire","Salaire","Pension alimentaire","Autres");
+        List<String> revenuesList = Arrays.asList("Bourses","APL","Salaire","Pension alimentaire","Autres");
         List<String> depensesList = Arrays.asList("Loyer","EDF","Eau","Abonnement/Forfait","Courses","Essences","Assurances","Restaurants/Bars","Autres");
         revenuesCategory = CategoryFactory.createGroupCategory("Revenues");
         depensesCategory = CategoryFactory.createGroupCategory("Depenses");
