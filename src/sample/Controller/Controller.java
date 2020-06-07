@@ -93,6 +93,7 @@ public class Controller implements IController {
             int yearToCreate = Integer.parseInt(globalPeriode.get(0).getName());
             createYear(yearToCreate-1);
             yearCursor = 0;
+            currentYearCursor++;
         }
     }
 
@@ -168,6 +169,24 @@ public class Controller implements IController {
             i++;
             y++;
         }
+    }
+
+    public void addRecurrentCharge(Montant charge){
+        int j = currentMonthCursor;
+        System.out.println("cmc : "+j);
+        System.out.println("cyc : "+currentYearCursor);
+        System.out.println("size: "+globalPeriode.size());
+        for(int i = currentYearCursor; i<globalPeriode.size(); i++){
+            while(j<12){
+                globalPeriode.get(i).getChild(j).addCharges(charge);
+                j++;
+            }
+            j=0;
+        }
+    }
+
+    public IPeriode getCurrentMonth(){
+        return globalPeriode.get(currentYearCursor).getChild(currentMonthCursor);
     }
 
     /* Getters */

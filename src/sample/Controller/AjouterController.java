@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import sample.Model.ICategory;
 import sample.Model.IPeriode;
 import sample.Model.Montant;
-import sample.Model.Month;
 
 import java.io.IOException;
 import java.net.URL;
@@ -91,7 +90,6 @@ public class AjouterController implements Initializable {
             if(controller.getRevenuesCategory().getChild(choice).getName().equals("Mouvement épargne")){
                 m.addEpargne(-montant);
             }
-            System.out.println(controller.getRevenuesCategory().getChild(choice).getName());
             revenuAjouteLabel.setText(montantString);
 
             nouveauRevenuLabel.setVisible(true);
@@ -121,7 +119,9 @@ public class AjouterController implements Initializable {
             int i = controller.getYearCursor();
             IPeriode m = controller.getGlobalPeriode().get(i).getChild(controller.getMonthCursor());
             m.addDepenses(new Montant(controller.getDepensesCategory().getChild(choice), montant));
-            System.out.println(controller.getDepensesCategory().getChild(choice).getName());
+            if(controller.getDepensesCategory().getChild(choice).getName().equals("Mouvement épargne")){
+                m.addEpargne(montant);
+            }
             depenseAjouteLabel.setText(montantString);
 
             nouvelleDepenseLabel.setVisible(true);

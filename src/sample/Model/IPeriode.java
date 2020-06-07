@@ -8,6 +8,7 @@ public interface IPeriode {
     public double getDepenses();
     public double getEpargne();
     public double getBudget();
+    public ArrayList<Montant> getCharges();
 
     public void addRevenues(Montant r);
     public void addDepenses(Montant d);

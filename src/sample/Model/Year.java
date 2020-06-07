@@ -49,6 +49,11 @@ public class Year implements IPeriode{
     }
 
     @Override
+    public ArrayList<Montant> getCharges() {
+        return new ArrayList<>();
+    }
+
+    @Override
     public void addRevenues(Montant r) {
 
     }

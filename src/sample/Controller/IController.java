@@ -3,6 +3,7 @@ package sample.Controller;
 import javafx.scene.Scene;
 import sample.Model.ICategory;
 import sample.Model.IPeriode;
+import sample.Model.Montant;
 import sample.View.View;
 
 import java.io.IOException;
@@ -23,7 +24,9 @@ public interface IController {
     public int getYearCursor();
     public int getCurrentMonthCursor();
     public int getCurrentYearCursor();
+    public IPeriode getCurrentMonth();
 
     public double computeEpargneTotal();
+    public void addRecurrentCharge(Montant charge);
 
 }

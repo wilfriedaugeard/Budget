@@ -98,7 +98,9 @@ public class Displayer implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
-    public void setController(IController controller) {
-        this.controller = controller;
+    @FXML void loadChargesWindow() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../View/Charges.fxml"));
+        rootPane.getChildren().setAll(pane);
     }
+
 }

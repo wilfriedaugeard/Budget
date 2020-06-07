@@ -65,6 +65,11 @@ public class Month implements IPeriode{
     }
 
     @Override
+    public ArrayList<Montant> getCharges() {
+        return charges;
+    }
+
+    @Override
     public void addRevenues(Montant r) {
         revenues.add(r);
     }
@@ -81,8 +86,20 @@ public class Month implements IPeriode{
 
     @Override
     public void addCharges(Montant c) {
+        for(Montant m : getCharges()){
+            if(m.getCategory().getName().equals(c.getCategory().getName())){
+                if(m.getValue() == c.getValue()){
+                    return;
+                }
+                int i = charges.indexOf(m);
+                charges.set(i, c);
+                return;
+            }
+        }
         charges.add(c);
     }
+
+
     @Override
     public void removeCharges(Montant c){
         charges.remove(c);
