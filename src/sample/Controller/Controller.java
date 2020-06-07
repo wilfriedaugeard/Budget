@@ -173,15 +173,31 @@ public class Controller implements IController {
 
     public void addRecurrentCharge(Montant charge){
         int j = currentMonthCursor;
-        System.out.println("cmc : "+j);
-        System.out.println("cyc : "+currentYearCursor);
-        System.out.println("size: "+globalPeriode.size());
         for(int i = currentYearCursor; i<globalPeriode.size(); i++){
             while(j<12){
                 globalPeriode.get(i).getChild(j).addCharges(charge);
                 j++;
             }
             j=0;
+        }
+    }
+
+    public void removeRecurrentCharge(String name){
+        Montant chargeToDelete = null;
+        for(Montant m : getCurrentMonth().getCharges()){
+            if(m.getCategory().getName().equals(name)){
+                chargeToDelete = m;
+            }
+        }
+        if(chargeToDelete != null){
+            int j = currentMonthCursor;
+            for(int i = currentYearCursor; i<globalPeriode.size(); i++){
+                while(j<12){
+                    globalPeriode.get(i).getChild(j).removeCharges(chargeToDelete);
+                    j++;
+                }
+                j=0;
+            }
         }
     }
 

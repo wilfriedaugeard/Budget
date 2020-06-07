@@ -57,7 +57,9 @@ public class ChargesController implements Initializable {
 
     @FXML
     public void supprimerButton(){
-        System.out.println("Supprimer");
+        if(!choiceBox.getSelectionModel().getSelectedItem().isEmpty()){
+            controller.removeRecurrentCharge(choiceBox.getSelectionModel().getSelectedItem());
+        }
     }
 
 

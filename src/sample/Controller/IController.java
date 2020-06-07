@@ -28,5 +28,6 @@ public interface IController {
 
     public double computeEpargneTotal();
     public void addRecurrentCharge(Montant charge);
+    public void removeRecurrentCharge(String chargeToDelete);
 
 }
