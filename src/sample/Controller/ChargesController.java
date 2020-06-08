@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import sample.Model.Category;
@@ -24,6 +25,14 @@ public class ChargesController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
 
+    @FXML
+    private Label chargeAddName;
+    @FXML
+    private Label montantAddLabel;
+
+    @FXML
+    private Label chargeDelName;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controller = Controller.getController();
@@ -34,6 +43,7 @@ public class ChargesController implements Initializable {
         for (Montant montant : controller.getCurrentMonth().getCharges()){
             choiceBox.getItems().add(montant.getCategory().getName());
         }
+        choiceBox.getSelectionModel().selectFirst();
     }
 
 
@@ -42,6 +52,7 @@ public class ChargesController implements Initializable {
     public void ajouterButton(){
         String nameString = chargeToAddTF.getText();
         String montantString = montantTF.getText();
+        chargeDelName.setVisible(false);
         if(!montantString.isEmpty() && !nameString.isEmpty()){
             if(!montantString.matches("(\\d+([,]|[.])\\d+)|\\d+")){
                 montantTF.clear();
@@ -51,14 +62,32 @@ public class ChargesController implements Initializable {
 
             double montant = Double.parseDouble(montantString);
             controller.addRecurrentCharge(new Montant(new Category(nameString),montant));
+
+            chargeAddName.setText(nameString+" de: ");
+            montantAddLabel.setText(montantString+" € ajouté");
+            chargeAddName.setVisible(true);
+            montantAddLabel.setVisible(true);
+
+            chargeToAddTF.clear();
+            montantTF.clear();
+            choiceBox.getItems().clear();
+            display();
         }
 
     }
 
     @FXML
     public void supprimerButton(){
-        if(!choiceBox.getSelectionModel().getSelectedItem().isEmpty()){
+        chargeAddName.setVisible(false);
+        montantAddLabel.setVisible(false);
+        if(!choiceBox.getItems().isEmpty()){
             controller.removeRecurrentCharge(choiceBox.getSelectionModel().getSelectedItem());
+
+            chargeDelName.setText(choiceBox.getSelectionModel().getSelectedItem()+" supprimé");
+            chargeDelName.setVisible(true);
+
+            choiceBox.getItems().clear();
+            display();
         }
     }
 
