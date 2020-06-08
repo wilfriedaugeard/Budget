@@ -131,8 +131,8 @@ public class Controller implements IController {
     }
 
     public void initializeCategory(){
-        List<String> revenuesList = Arrays.asList("Bourses","APL","Salaire","Pension alimentaire","Mouvement épargne","Autres");
-        List<String> depensesList = Arrays.asList("Loyer","EDF","Eau","Abonnement/Forfait","Courses","Essences","Assurances","Restaurants/Bars","Mouvement épargne","Autres");
+        List<String> revenuesList = Arrays.asList("Mouvement épargne","Autres");
+        List<String> depensesList = Arrays.asList("Courses","Essences","Assurances","Restaurants/Bars","Mouvement épargne","Autres");
         revenuesCategory = CategoryFactory.createGroupCategory("Revenues");
         depensesCategory = CategoryFactory.createGroupCategory("Depenses");
         for(String r : revenuesList){
@@ -171,29 +171,47 @@ public class Controller implements IController {
         }
     }
 
-    public void addRecurrentCharge(Montant charge){
+    public void addRecurrent(Montant montant, boolean isRevenu){
         int j = currentMonthCursor;
         for(int i = currentYearCursor; i<globalPeriode.size(); i++){
             while(j<12){
-                globalPeriode.get(i).getChild(j).addCharges(charge);
+                if(isRevenu){
+                    globalPeriode.get(i).getChild(j).addRevenuesRec(montant);
+                }else{
+                    globalPeriode.get(i).getChild(j).addCharges(montant);
+                }
                 j++;
             }
             j=0;
         }
     }
 
-    public void removeRecurrentCharge(String name){
-        Montant chargeToDelete = null;
-        for(Montant m : getCurrentMonth().getCharges()){
-            if(m.getCategory().getName().equals(name)){
-                chargeToDelete = m;
+    @Override
+    public void removeRecurrent(String name, boolean isRevenu){
+        Montant toDelete = null;
+        if(isRevenu){
+            for(Montant m : getCurrentMonth().getRevenuesRec()){
+                if(m.getCategory().getName().equals(name)){
+                    toDelete = m;
+                }
+            }
+        }else{
+            for(Montant m : getCurrentMonth().getCharges()){
+                if(m.getCategory().getName().equals(name)){
+                    toDelete = m;
+                }
             }
         }
-        if(chargeToDelete != null){
+
+        if(toDelete != null){
             int j = currentMonthCursor;
             for(int i = currentYearCursor; i<globalPeriode.size(); i++){
                 while(j<12){
-                    globalPeriode.get(i).getChild(j).removeCharges(chargeToDelete);
+                    if(isRevenu){
+                        globalPeriode.get(i).getChild(j).removeRevenuRec(toDelete);
+                    }else{
+                        globalPeriode.get(i).getChild(j).removeCharges(toDelete);
+                    }
                     j++;
                 }
                 j=0;

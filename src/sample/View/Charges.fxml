@@ -61,14 +61,59 @@
                                           <Insets left="5.0" right="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterButton" prefHeight="25.0" prefWidth="86.0" text="Ajouter " textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterCharge" prefHeight="25.0" prefWidth="86.0" text="Ajouter " textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                     <Label prefHeight="15.0" prefWidth="156.0" text="Charge à supprimer :" GridPane.rowIndex="4" />
-                                    <ChoiceBox fx:id="choiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerButton" text="Supprimer" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <ChoiceBox fx:id="choiceBoxCharge" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerCharge" text="Supprimer" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                     <Label fx:id="chargeAddName" text="Label" textFill="#05ab03" visible="false" GridPane.rowIndex="2" />
                                     <Label fx:id="montantAddLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Label" textFill="#05ab03" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label fx:id="chargeDelName" text="Label" textFill="#aa2603" visible="false" GridPane.rowIndex="5" />
                                  </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Revenus">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <GridPane alignment="CENTER_RIGHT" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label text="Nom du revenu:" />
+                                    <Label text="Montant :" GridPane.rowIndex="1" />
+                                    <TextField fx:id="revenuToAddTF" GridPane.columnIndex="1" />
+                                    <TextField fx:id="montantRTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="€" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterRevenu" prefHeight="25.0" prefWidth="86.0" text="Ajouter " textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label prefHeight="15.0" prefWidth="156.0" text="Revenu à supprimer :" GridPane.rowIndex="4" />
+                                    <ChoiceBox fx:id="choiceBoxRevenu" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerRevenu" text="Supprimer" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <Label fx:id="revenuAddName" text="Label" textFill="#05ab03" visible="false" GridPane.rowIndex="2" />
+                                    <Label fx:id="montantRAddLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Label" textFill="#05ab03" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="revenuDelName" text="Label" textFill="#aa2603" visible="false" GridPane.rowIndex="5" />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="153.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="141.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="0.0" prefWidth="195.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="112.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="40.0" />
+                                 </BorderPane.margin>
                               </GridPane>
                            </children>
                         </AnchorPane>

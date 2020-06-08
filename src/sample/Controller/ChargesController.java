@@ -23,15 +23,27 @@ public class ChargesController implements Initializable {
     @FXML
     private TextField montantTF;
     @FXML
-    private ChoiceBox<String> choiceBox;
-
+    private ChoiceBox<String> choiceBoxCharge;
     @FXML
     private Label chargeAddName;
     @FXML
     private Label montantAddLabel;
-
     @FXML
     private Label chargeDelName;
+
+    @FXML
+    private TextField revenuToAddTF;
+    @FXML
+    private TextField montantRTF;
+    @FXML
+    private ChoiceBox<String> choiceBoxRevenu;
+    @FXML
+    private Label revenuAddName;
+    @FXML
+    private Label montantRAddLabel;
+    @FXML
+    private Label revenuDelName;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,55 +53,81 @@ public class ChargesController implements Initializable {
 
     public void display(){
         for (Montant montant : controller.getCurrentMonth().getCharges()){
-            choiceBox.getItems().add(montant.getCategory().getName());
+            choiceBoxCharge.getItems().add(montant.getCategory().getName());
         }
-        choiceBox.getSelectionModel().selectFirst();
+        choiceBoxCharge.getSelectionModel().selectFirst();
+        for (Montant montant : controller.getCurrentMonth().getRevenuesRec()){
+            choiceBoxRevenu.getItems().add(montant.getCategory().getName());
+        }
+        choiceBoxRevenu.getSelectionModel().selectFirst();
+
+
     }
 
 
 
     @FXML
-    public void ajouterButton(){
-        String nameString = chargeToAddTF.getText();
-        String montantString = montantTF.getText();
-        chargeDelName.setVisible(false);
+    public void ajouterButton(TextField name, TextField montant, ChoiceBox<String> choiceBox, Label labelDelName, Label labeladdName, Label montantAdd, boolean isRevenu){
+        String nameString = name.getText();
+        String montantString = montant.getText();
+        labelDelName.setVisible(false);
         if(!montantString.isEmpty() && !nameString.isEmpty()){
             if(!montantString.matches("(\\d+([,]|[.])\\d+)|\\d+")){
-                montantTF.clear();
+                montant.clear();
                 return;
             }
             montantString = montantString.replace(",",".");
 
-            double montant = Double.parseDouble(montantString);
-            controller.addRecurrentCharge(new Montant(new Category(nameString),montant));
+            double montantValue = Double.parseDouble(montantString);
+            controller.addRecurrent(new Montant(new Category(nameString),montantValue),isRevenu);
 
-            chargeAddName.setText(nameString+" de: ");
-            montantAddLabel.setText(montantString+" € ajouté");
-            chargeAddName.setVisible(true);
-            montantAddLabel.setVisible(true);
 
-            chargeToAddTF.clear();
-            montantTF.clear();
+            labeladdName.setText(nameString+" de: ");
+            montantAdd.setText(montantString+" € ajouté");
+            labeladdName.setVisible(true);
+            montantAdd.setVisible(true);
+
+            name.clear();
+            montant.clear();
             choiceBox.getItems().clear();
             display();
         }
 
+    }
+
+    public void supprimerButton(ChoiceBox<String> choiceBox, Label labelAddName, Label montantAdd, Label labelDelName, boolean isRevenu){
+        labelAddName.setVisible(false);
+        montantAdd.setVisible(false);
+        if(!choiceBox.getItems().isEmpty()){
+            controller.removeRecurrent(choiceBox.getSelectionModel().getSelectedItem(), isRevenu);
+
+            labelDelName.setText(choiceBox.getSelectionModel().getSelectedItem()+" supprimé");
+            labelDelName.setVisible(true);
+
+            choiceBox.getItems().clear();
+            display();
+        }
     }
 
     @FXML
-    public void supprimerButton(){
-        chargeAddName.setVisible(false);
-        montantAddLabel.setVisible(false);
-        if(!choiceBox.getItems().isEmpty()){
-            controller.removeRecurrentCharge(choiceBox.getSelectionModel().getSelectedItem());
-
-            chargeDelName.setText(choiceBox.getSelectionModel().getSelectedItem()+" supprimé");
-            chargeDelName.setVisible(true);
-
-            choiceBox.getItems().clear();
-            display();
-        }
+    public void ajouterCharge(){
+        ajouterButton(chargeToAddTF, montantTF, choiceBoxCharge, chargeDelName, chargeAddName, montantAddLabel, false);
     }
+    @FXML
+    public void ajouterRevenu(){
+        ajouterButton(revenuToAddTF, montantRTF, choiceBoxRevenu, revenuDelName, revenuAddName, montantRAddLabel, true);
+    }
+
+
+    @FXML
+    public void supprimerCharge(){
+        supprimerButton(choiceBoxCharge, chargeAddName, montantAddLabel, chargeDelName, false);
+    }
+    @FXML
+    public void supprimerRevenu(){
+        supprimerButton(choiceBoxRevenu, revenuAddName, montantRAddLabel, revenuDelName, true);
+    }
+
 
 
     @FXML

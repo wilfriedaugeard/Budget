@@ -17,12 +17,22 @@ public class Year implements IPeriode{
     }
 
     @Override
-    public double getRevenues() {
+    public double getRevenuesValue() {
         double total = 0;
         for(IPeriode m : list){
-            total += m.getRevenues();
+            total += m.getRevenuesValue();
         }
         return total;
+    }
+
+    @Override
+    public ArrayList<Montant> getRevenues() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public ArrayList<Montant> getRevenuesRec() {
+        return new ArrayList<>();
     }
 
     @Override
@@ -59,6 +69,11 @@ public class Year implements IPeriode{
     }
 
     @Override
+    public void addRevenuesRec(Montant r) {
+
+    }
+
+    @Override
     public void addDepenses(Montant d) {
 
     }
@@ -75,6 +90,16 @@ public class Year implements IPeriode{
 
     @Override
     public void removeCharges(Montant c) {
+
+    }
+
+    @Override
+    public void removeRevenu(Montant r) {
+
+    }
+
+    @Override
+    public void removeRevenuRec(Montant r) {
 
     }
 

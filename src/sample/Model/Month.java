@@ -6,6 +6,7 @@ public class Month implements IPeriode{
     private String name;
     private ArrayList<Montant> depenses;
     private ArrayList<Montant> revenues;
+    private ArrayList<Montant> revenuesRec;
     private ArrayList<Montant> charges;
     private double epargne;
 
@@ -13,17 +14,31 @@ public class Month implements IPeriode{
         this.name = name;
         this.depenses = new ArrayList<>();
         this.revenues = new ArrayList<>();
+        this.revenuesRec = new ArrayList<>();
         this.charges = new ArrayList<>();
         this.epargne = 0;
     }
 
     @Override
-    public double getRevenues() {
+    public double getRevenuesValue() {
         double total = 0;
         for(Montant m : revenues){
             total += m.getValue();
         }
+        for(Montant m : revenuesRec){
+            total += m.getValue();
+        }
         return total;
+    }
+
+    @Override
+    public ArrayList<Montant> getRevenues() {
+        return revenues;
+    }
+
+    @Override
+    public ArrayList<Montant> getRevenuesRec(){
+        return revenuesRec;
     }
 
     @Override
@@ -50,18 +65,14 @@ public class Month implements IPeriode{
 
     @Override
     public double getBudget() {
-        double res = 0;
-        boolean equal = false;
-        for(Montant c : charges){
-            for(Montant d : depenses){
-                if(c.getCategory().equals(d.getCategory()))
-                   equal = true;
-                res += d.getValue();
-            }
-            if(!equal)
-                res+= c.getValue();
+        double res = getRevenuesValue();
+        for(Montant m : depenses){
+            res -= m.getValue();
         }
-        return getRevenues()-res;
+        for(Montant m : charges){
+            res -= m.getValue();
+        }
+        return res;
     }
 
     @Override
@@ -72,6 +83,21 @@ public class Month implements IPeriode{
     @Override
     public void addRevenues(Montant r) {
         revenues.add(r);
+    }
+
+    @Override
+    public void addRevenuesRec(Montant r) {
+        for(Montant m : getRevenuesRec()){
+            if(m.getCategory().getName().equals(r.getCategory().getName())){
+                if(m.getValue() == r.getValue()){
+                    return;
+                }
+                int i = revenuesRec.indexOf(m);
+                revenuesRec.set(i, r);
+                return;
+            }
+        }
+        revenuesRec.add(r);
     }
 
     @Override
@@ -116,6 +142,15 @@ public class Month implements IPeriode{
     }
 
 
+    @Override
+    public void removeRevenu(Montant r){
+        revenues.remove(r);
+    }
+
+    @Override
+    public void removeRevenuRec(Montant r){
+        revenuesRec.remove(r);
+    }
 
     @Override
     public ArrayList<IPeriode> getChildren() {

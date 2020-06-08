@@ -27,7 +27,7 @@ public interface IController {
     public IPeriode getCurrentMonth();
 
     public double computeEpargneTotal();
-    public void addRecurrentCharge(Montant charge);
-    public void removeRecurrentCharge(String chargeToDelete);
+    public void addRecurrent(Montant montant, boolean isRevenu);
+    public void removeRecurrent(String name, boolean isRevenu);
 
 }
