@@ -1,8 +1,9 @@
 package sample.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Year implements IPeriode{
+public class Year implements IPeriode, Serializable {
     private String name;
     private ArrayList<IPeriode> list;
 

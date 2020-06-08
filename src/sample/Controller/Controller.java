@@ -8,23 +8,24 @@ import sample.Factory.PeriodeFactory;
 import sample.Model.*;
 import sample.View.View;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class Controller implements IController {
-    private View view;
+public class Controller implements IController, Serializable {
+    private static final long serialVersionUID = 1L;
+    private boolean existState;
+    private transient View view;
     private int year;
     private int monthCursor;
     private int yearCursor;
     private int currentMonthCursor;
     private int currentYearCursor;
-    private final ArrayList<IPeriode> globalPeriode;
+    private ArrayList<IPeriode> globalPeriode;
     private ICategory revenuesCategory;
     private ICategory depensesCategory;
-    private Displayer displayer;
 
 
     // VIEW
@@ -53,6 +54,10 @@ public class Controller implements IController {
         globalPeriode = new ArrayList<>();
         dateTreatment();
         initializeModel();
+        setState();
+        if(existState){
+            loadState(this);
+        }
     }
     private static IController INSTANCE = null;
 
@@ -60,6 +65,68 @@ public class Controller implements IController {
         if(INSTANCE == null)
             INSTANCE = new Controller();
         return INSTANCE;
+    }
+
+    /**
+     * Save the state
+     */
+    @Override
+    public void saveState() {
+        existState = true;
+        String filename = "state.ctrl";
+        ObjectOutputStream oos = null;
+        try {
+            File file = new File(filename);
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(this);
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (oos != null) {
+                    oos.flush();
+                    oos.close();
+                }
+            } catch (final IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void setState(){
+        String filename = "state.ctrl";
+        ObjectInput ois = null;
+        try{
+            final FileInputStream file = new FileInputStream(filename);
+            existState = true;
+        } catch (IOException e){
+            existState = false;
+        }
+    }
+
+    public void loadState(IController controller){
+        String filename = "state.ctrl";
+        ObjectInput ois = null;
+        try {
+            final FileInputStream file = new FileInputStream(filename);
+            ois = new ObjectInputStream(file);
+            final Controller controller_load = (Controller) ois.readObject();
+            controller.setGlobalPeriode(controller_load.getGlobalPeriode());
+            controller.setDepensesCategory(controller_load.getDepensesCategory());
+            controller.setRevenuesCategory(controller_load.getRevenuesCategory());
+
+        } catch (final IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (final IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -264,5 +331,19 @@ public class Controller implements IController {
     @Override
     public Scene getScene(){
         return view.getScene();
+    }
+
+    /* Setters */
+    @Override
+    public void setRevenuesCategory(ICategory revenuesCategory) {
+        this.revenuesCategory = revenuesCategory;
+    }
+    @Override
+    public void setDepensesCategory(ICategory depensesCategory) {
+        this.depensesCategory = depensesCategory;
+    }
+    @Override
+    public void setGlobalPeriode(ArrayList<IPeriode> globalPeriode) {
+        this.globalPeriode = globalPeriode;
     }
 }

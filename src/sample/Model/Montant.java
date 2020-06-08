@@ -1,6 +1,8 @@
 package sample.Model;
 
-public class Montant {
+import java.io.Serializable;
+
+public class Montant implements Serializable {
     private double value;
     private final ICategory category;
 

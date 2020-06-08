@@ -1,8 +1,9 @@
 package sample.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupCategory implements ICategory{
+public class GroupCategory implements ICategory, Serializable {
     private String name;
     private ArrayList<ICategory> list;
 

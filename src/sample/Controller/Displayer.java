@@ -9,6 +9,7 @@ import sample.Model.IPeriode;
 import sample.Model.Montant;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 

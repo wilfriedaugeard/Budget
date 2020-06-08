@@ -97,6 +97,7 @@ public class AjouterController implements Initializable {
             euroRevenuLabel.setVisible(true);
 
             revenusTextField.clear();
+            controller.saveState();
         }
     }
 
@@ -129,6 +130,7 @@ public class AjouterController implements Initializable {
             euroDepenseLabel.setVisible(true);
 
             depensesTextField.clear();
+            controller.saveState();
         }
     }
 

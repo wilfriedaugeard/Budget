@@ -1,8 +1,9 @@
 package sample.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Month implements IPeriode{
+public class Month implements IPeriode, Serializable {
     private String name;
     private ArrayList<Montant> depenses;
     private ArrayList<Montant> revenues;

@@ -91,6 +91,7 @@ public class ChargesController implements Initializable {
             montant.clear();
             choiceBox.getItems().clear();
             display();
+            controller.saveState();
         }
 
     }
@@ -106,6 +107,7 @@ public class ChargesController implements Initializable {
 
             choiceBox.getItems().clear();
             display();
+            controller.saveState();
         }
     }
 

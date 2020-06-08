@@ -30,4 +30,10 @@ public interface IController {
     public void addRecurrent(Montant montant, boolean isRevenu);
     public void removeRecurrent(String name, boolean isRevenu);
 
+    public void setDepensesCategory(ICategory depensesCategory);
+    public void setRevenuesCategory(ICategory revenuesCategory);
+    public void setGlobalPeriode(ArrayList<IPeriode> globalPeriode);
+
+    public void saveState();
+
 }
