@@ -3,10 +3,9 @@ package sample.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import sample.Model.Category;
 import sample.Model.ICategory;
 import sample.Model.IPeriode;
 import sample.Model.Montant;
@@ -26,6 +25,12 @@ public class AjouterController implements Initializable {
     @FXML
     private ChoiceBox<String> revenusChoiceBox;
     @FXML
+    private Button plusRevButton;
+    @FXML
+    private Button createRevButton;
+    @FXML
+    private TextField createRevCatTF;
+    @FXML
     private Label nouveauRevenuLabel;
     @FXML
     private Label revenuAjouteLabel;
@@ -36,6 +41,12 @@ public class AjouterController implements Initializable {
     private TextField depensesTextField;
     @FXML
     private ChoiceBox<String> depensesChoiceBox;
+    @FXML
+    private Button plusDepButton;
+    @FXML
+    private Button createDepButton;
+    @FXML
+    private TextField createDepCatTF;
     @FXML
     private Label nouvelleDepenseLabel;
     @FXML
@@ -51,10 +62,12 @@ public class AjouterController implements Initializable {
     }
 
     public void display(){
+        revenusChoiceBox.getItems().clear();
         for(ICategory category : controller.getRevenuesCategory().getChildren()){
             revenusChoiceBox.getItems().add(category.getName());
         }
         revenusChoiceBox.getSelectionModel().selectFirst();
+        depensesChoiceBox.getItems().clear();
         for(ICategory category : controller.getDepensesCategory().getChildren()){
             depensesChoiceBox.getItems().add(category.getName());
         }
@@ -132,6 +145,50 @@ public class AjouterController implements Initializable {
             depensesTextField.clear();
             controller.saveState();
         }
+    }
+
+    @FXML
+    public void showCreateRevCate(){
+        showCreateCategory(plusRevButton, createRevCatTF, createRevButton);
+    }
+    @FXML
+    public void showCreateDepCate(){
+        showCreateCategory(plusDepButton, createDepCatTF, createDepButton);
+    }
+
+
+    public void showCreateCategory(Button plusBtn, TextField tf, Button createBtn){
+        if(!plusBtn.getText().equals("+")){
+            plusBtn.setText("+");
+            tf.setVisible(false);
+            createBtn.setVisible(false);
+            return;
+        }
+        plusBtn.setText(" - ");
+        tf.setVisible(true);
+        createBtn.setVisible(true);
+    }
+
+
+    @FXML
+    public void createRevCategory(){
+        createCategory(controller.getRevenuesCategory(), createRevCatTF, plusRevButton, createRevButton, "+");
+    }
+
+    @FXML
+    public void createDepCategory(){
+        createCategory(controller.getDepensesCategory(), createDepCatTF, plusDepButton, createDepButton, "+");
+    }
+
+    public void createCategory(ICategory globalCategory, TextField tf, Button plusBtn, Button createBtn, String text){
+        String stringCategory= tf.getText();
+        if(!stringCategory.isEmpty()){
+            globalCategory.add(new Category(stringCategory));
+            display();
+        }
+        plusBtn.setText(text);
+        tf.setVisible(false);
+        createBtn.setVisible(false);
     }
 
 }

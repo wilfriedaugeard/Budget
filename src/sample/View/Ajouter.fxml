@@ -31,10 +31,12 @@
                                     </Label>
                                     <GridPane>
                                       <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="133.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="131.0" prefWidth="132.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="85.0" prefWidth="254.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="131.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="40.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="58.0" prefWidth="153.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="77.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -52,12 +54,12 @@
                                           </Label>
                                           <Label text="Catégorie :" GridPane.rowIndex="1" />
                                           <TextField fx:id="revenusTextField" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" />
-                                          <Button mnemonicParsing="false" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <Button fx:id="plusRevButton" mnemonicParsing="false" onAction="#showCreateRevCate" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="5.0" right="5.0" />
                                              </GridPane.margin>
                                           </Button>
-                                          <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouterRevenus" text="Ajouter" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouterRevenus" text="Ajouter" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                           <Label fx:id="nouveauRevenuLabel" prefHeight="15.0" prefWidth="119.0" text="Nouveau revenu :" textFill="#05ab03" visible="false" GridPane.rowIndex="2" />
                                           <Label fx:id="euroRevenuLabel" alignment="CENTER" contentDisplay="CENTER" text="€" textFill="#05ab03" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                              <padding>
@@ -65,6 +67,16 @@
                                              </padding>
                                           </Label>
                                           <Label fx:id="revenuAjouteLabel" alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="143.0" text="revenuAjouteLabel" textFill="#05ab03" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="createRevCatTF" promptText="Create a category" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <Button fx:id="createRevButton" mnemonicParsing="false" onAction="#createRevCategory" text="Créer" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" />
+                                             </GridPane.margin>
+                                          </Button>
                                        </children>
                                     </GridPane>
                                     <Label text="Dépenses">
@@ -85,13 +97,13 @@
                                              </padding>
                                           </Label>
                                           <Label text="Catégorie :" GridPane.rowIndex="1" />
-                                          <TextField fx:id="depensesTextField" GridPane.columnIndex="1" />
-                                          <Button mnemonicParsing="false" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <TextField fx:id="depensesTextField" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" />
+                                          <Button fx:id="plusDepButton" mnemonicParsing="false" onAction="#showCreateDepCate" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="5.0" right="5.0" />
                                              </GridPane.margin>
                                           </Button>
-                                          <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouterDepenses" text="Ajouter" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#ajouterDepenses" text="Ajouter" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                           <Label fx:id="nouvelleDepenseLabel" prefHeight="15.0" prefWidth="128.0" text="Nouvelle dépense :" textFill="#aa2603" visible="false" GridPane.rowIndex="2" />
                                           <Label fx:id="depenseAjouteLabel" alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="143.0" text="depenseAjouteLabel" textFill="#aa2603" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <Label fx:id="euroDepenseLabel" alignment="CENTER" contentDisplay="CENTER" text="€" textFill="#aa2603" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -99,12 +111,20 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </padding>
                                           </Label>
+                                          <TextField fx:id="createDepCatTF" promptText="Create a category" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                          <Button fx:id="createDepButton" mnemonicParsing="false" onAction="#createDepCategory" text="Créer" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" />
+                                             </GridPane.margin>
+                                          </Button>
                                        </children>
                                        <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="133.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="130.0" prefWidth="130.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="85.0" prefWidth="255.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="131.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="-Infinity" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="153.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="77.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="10095.0" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
