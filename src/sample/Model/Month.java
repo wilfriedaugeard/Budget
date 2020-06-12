@@ -9,6 +9,7 @@ public class Month implements IPeriode, Serializable {
     private ArrayList<Montant> revenues;
     private ArrayList<Montant> revenuesRec;
     private ArrayList<Montant> charges;
+    private double budget;
     private double epargne;
 
     public Month(String name) {
@@ -18,6 +19,7 @@ public class Month implements IPeriode, Serializable {
         this.revenuesRec = new ArrayList<>();
         this.charges = new ArrayList<>();
         this.epargne = 0;
+        this.budget = 0;
     }
 
     @Override
@@ -66,14 +68,17 @@ public class Month implements IPeriode, Serializable {
 
     @Override
     public double getBudget() {
-        double res = getRevenuesValue();
-        for(Montant m : depenses){
-            res -= m.getValue();
-        }
-        for(Montant m : charges){
-            res -= m.getValue();
-        }
-        return res;
+        return this.budget;
+    }
+
+    @Override
+    public void setBudget(double m){
+        budget+=m;
+    }
+
+    @Override
+    public void setEpargne(double m) {
+        epargne+=m;
     }
 
     @Override
@@ -84,6 +89,7 @@ public class Month implements IPeriode, Serializable {
     @Override
     public void addRevenues(Montant r) {
         revenues.add(r);
+        budget+=r.getValue();
     }
 
     @Override
@@ -95,15 +101,18 @@ public class Month implements IPeriode, Serializable {
                 }
                 int i = revenuesRec.indexOf(m);
                 revenuesRec.set(i, r);
+                budget+=m.getValue();
                 return;
             }
         }
         revenuesRec.add(r);
+        budget+=r.getValue();
     }
 
     @Override
     public void addDepenses(Montant d) {
         depenses.add(d);
+        budget-=d.getValue();
     }
 
     @Override
@@ -120,16 +129,19 @@ public class Month implements IPeriode, Serializable {
                 }
                 int i = charges.indexOf(m);
                 charges.set(i, c);
+                budget-=m.getValue();
                 return;
             }
         }
         charges.add(c);
+        budget-=c.getValue();
     }
 
 
     @Override
     public void removeCharges(Montant c){
         charges.remove(c);
+        budget+=c.getValue();
     }
 
     @Override
@@ -146,11 +158,13 @@ public class Month implements IPeriode, Serializable {
     @Override
     public void removeRevenu(Montant r){
         revenues.remove(r);
+        budget-=r.getValue();
     }
 
     @Override
     public void removeRevenuRec(Montant r){
         revenuesRec.remove(r);
+        budget-=r.getValue();
     }
 
     @Override

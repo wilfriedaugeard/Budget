@@ -53,6 +53,16 @@ public class AjouterController implements Initializable {
     private Label depenseAjouteLabel;
     @FXML
     private Label euroDepenseLabel;
+    // Ajustemement
+    @FXML
+    private TextField soldeTF;
+    @FXML
+    private TextField epargneTF;
+    @FXML
+    private Label labelSoldeAjust;
+    @FXML
+    private Label labelEpargneAjust;
+
 
 
     @Override
@@ -169,15 +179,15 @@ public class AjouterController implements Initializable {
         createBtn.setVisible(true);
     }
 
-
     @FXML
     public void createRevCategory(){
         createCategory(controller.getRevenuesCategory(), createRevCatTF, plusRevButton, createRevButton, "+");
+        controller.saveState();
     }
-
     @FXML
     public void createDepCategory(){
         createCategory(controller.getDepensesCategory(), createDepCatTF, plusDepButton, createDepButton, "+");
+        controller.saveState();
     }
 
     public void createCategory(ICategory globalCategory, TextField tf, Button plusBtn, Button createBtn, String text){
@@ -189,6 +199,39 @@ public class AjouterController implements Initializable {
         plusBtn.setText(text);
         tf.setVisible(false);
         createBtn.setVisible(false);
+    }
+
+
+    public void ajust(TextField tf, boolean isBudget, Label label){
+        String string = tf.getText();
+        if(!string.isEmpty()){
+            if(!string.matches("(\\d+([,]|[.])\\d+)|\\d+")){
+                tf.clear();
+            }else{
+                double value = Double.parseDouble(string);
+                if(value == 0){
+                    tf.clear();
+                }else{
+                    if(isBudget) {
+                        controller.getCurrentMonth().setBudget(value);
+                        label.setText("Ajustement du budget: "+value+" €");
+                    }else{
+                        controller.getCurrentMonth().setEpargne(value);
+                        label.setText("Ajustement de l'épargne: "+value+" €");
+                    }
+                    label.setVisible(true);
+                }
+            }tf.clear();
+        }
+    }
+
+    @FXML
+    public void ajustAndDisplay(){
+       labelSoldeAjust.setVisible(false);
+       labelEpargneAjust.setVisible(false);
+       ajust(soldeTF, true, labelSoldeAjust);
+       ajust(epargneTF, false, labelEpargneAjust);
+       controller.saveState();
     }
 
 }

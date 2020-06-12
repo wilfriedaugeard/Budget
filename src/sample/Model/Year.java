@@ -65,6 +65,16 @@ public class Year implements IPeriode, Serializable {
     }
 
     @Override
+    public void setBudget(double m) {
+
+    }
+
+    @Override
+    public void setEpargne(double m) {
+
+    }
+
+    @Override
     public void addRevenues(Montant r) {
 
     }
