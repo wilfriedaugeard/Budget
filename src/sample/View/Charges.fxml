@@ -22,7 +22,7 @@
                   </ImageView>
                </left>
                <center>
-                  <Label alignment="CENTER" prefWidth="600.0" text="AJOUTER / SUPPRIMER CHARGES" BorderPane.alignment="CENTER" />
+                  <Label alignment="CENTER" prefWidth="600.0" text="AJOUTER ou SUPPRIMER CHARGES/REVENUS RECURRENTS" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </top>
