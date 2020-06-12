@@ -193,7 +193,7 @@ public class AjouterController implements Initializable {
     public void createCategory(ICategory globalCategory, TextField tf, Button plusBtn, Button createBtn, String text){
         String stringCategory= tf.getText();
         if(!stringCategory.isEmpty()){
-            globalCategory.add(new Category(stringCategory));
+            globalCategory.add(globalCategory.getChildren().size()-1, new Category(stringCategory));
             display();
         }
         plusBtn.setText(text);

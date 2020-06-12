@@ -16,6 +16,11 @@ public class Category implements ICategory, Serializable {
     }
 
     @Override
+    public void add(int index, ICategory category) {
+
+    }
+
+    @Override
     public void remove(ICategory category) {
 
     }

@@ -18,6 +18,11 @@ public class GroupCategory implements ICategory, Serializable {
     }
 
     @Override
+    public void add(int index, ICategory category){
+        list.add(index, category);
+    }
+
+    @Override
     public void remove(ICategory category) {
         list.remove(category);
     }
