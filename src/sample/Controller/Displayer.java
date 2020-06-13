@@ -10,11 +10,16 @@ import sample.Model.Montant;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.RoundingMode;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Displayer implements Initializable {
     private IController controller;
+    private DecimalFormat df;
     // VIEW
     @FXML
     private AnchorPane rootPane;
@@ -44,6 +49,8 @@ public class Displayer implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         controller = Controller.getController();
+        df = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
+        df.setMaximumFractionDigits(2);
         setDisplayMonth();
     }
 
@@ -58,21 +65,25 @@ public class Displayer implements Initializable {
         displayCurrentmonth();
     }
 
+    public double computeCharges(IPeriode month){
+        double charges = 0;
+        for(Montant m : month.getCharges()){
+            charges += m.getValue();
+        }
+        return charges;
+    }
 
     public void displayMonthRecap(){
         IPeriode month = controller.getGlobalPeriode().get(controller.getYearCursor()).getChild(controller.getMonthCursor());
         double revenues = month.getRevenuesValue();
         double depenses = month.getDepenses();
         double epargnes = month.getEpargne();
-        double charges = 0;
-        for(Montant m : month.getCharges()){
-            charges += m.getValue();
-        }
+        double charges = computeCharges(month);
 
-        revenuesLabel.setText(Double.toString(revenues));
-        chargesLabel.setText(Double.toString(charges));
-        depensesLabel.setText(Double.toString(depenses));
-        epargnesLabel.setText(Double.toString(epargnes));
+        revenuesLabel.setText(df.format(revenues));
+        chargesLabel.setText(df.format(charges));
+        depensesLabel.setText(df.format(depenses));
+        epargnesLabel.setText(df.format(epargnes));
     }
 
     public void displayCurrentmonth(){
@@ -81,16 +92,13 @@ public class Displayer implements Initializable {
         double depenses = month.getDepenses();
         double epargnes = month.getEpargne();
         double budget = month.getBudget();
-        double charges = 0;
-        for(Montant m : month.getCharges()){
-            charges += m.getValue();
-        }
-        currentRevenues.setText(Double.toString(revenues));
-        currentDepenses.setText(Double.toString(depenses));
-        currentCharges.setText(Double.toString(charges));
-        currentEpargnes.setText(Double.toString(epargnes));
-        currentBudget.setText(Double.toString(budget));
-        epargnesTotal.setText(Double.toString(controller.computeEpargneTotal()));
+        double charges = computeCharges(month);
+        currentRevenues.setText(df.format(revenues));
+        currentDepenses.setText(df.format(depenses));
+        currentCharges.setText(df.format(charges));
+        currentEpargnes.setText(df.format(epargnes));
+        currentBudget.setText(df.format(budget));
+        epargnesTotal.setText(df.format(controller.computeEpargneTotal()));
     }
 
     @FXML
