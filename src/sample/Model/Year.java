@@ -37,12 +37,17 @@ public class Year implements IPeriode, Serializable {
     }
 
     @Override
-    public double getDepenses() {
+    public double getDepensesValue() {
         double total = 0;
         for(IPeriode m : list){
-            total += m.getDepenses();
+            total += m.getDepensesValue();
         }
         return total;
+    }
+
+    @Override
+    public ArrayList<Montant> getDepenses() {
+        return null;
     }
 
     @Override

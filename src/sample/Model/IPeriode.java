@@ -7,7 +7,8 @@ public interface IPeriode {
     public double getRevenuesValue();
     public ArrayList<Montant> getRevenues();
     public ArrayList<Montant> getRevenuesRec();
-    public double getDepenses();
+    public double getDepensesValue();
+    public ArrayList<Montant> getDepenses();
     public double getEpargne();
     public double getBudget();
     public ArrayList<Montant> getCharges();

@@ -211,7 +211,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="35.0" mnemonicParsing="false" prefWidth="250.0" text="Détails" textAlignment="CENTER">
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="35.0" mnemonicParsing="false" onAction="#loadDetailsWindow" prefWidth="250.0" text="Détails" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" />
                            </VBox.margin>

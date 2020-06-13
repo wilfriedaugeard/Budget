@@ -45,7 +45,7 @@ public class Month implements IPeriode, Serializable {
     }
 
     @Override
-    public double getDepenses() {
+    public double getDepensesValue() {
         double total = 0;
         for(Montant m : depenses){
             total += m.getValue();
@@ -53,6 +53,10 @@ public class Month implements IPeriode, Serializable {
         return total;
     }
 
+    @Override
+    public ArrayList<Montant> getDepenses(){
+        return depenses;
+    }
 
 
     /* Getters and Setters */

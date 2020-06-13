@@ -9,8 +9,6 @@ import sample.Model.IPeriode;
 import sample.Model.Montant;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.math.RoundingMode;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -76,7 +74,7 @@ public class Displayer implements Initializable {
     public void displayMonthRecap(){
         IPeriode month = controller.getGlobalPeriode().get(controller.getYearCursor()).getChild(controller.getMonthCursor());
         double revenues = month.getRevenuesValue();
-        double depenses = month.getDepenses();
+        double depenses = month.getDepensesValue();
         double epargnes = month.getEpargne();
         double charges = computeCharges(month);
 
@@ -89,7 +87,7 @@ public class Displayer implements Initializable {
     public void displayCurrentmonth(){
         IPeriode month = controller.getGlobalPeriode().get(controller.getCurrentYearCursor()).getChild(controller.getCurrentMonthCursor());
         double revenues = month.getRevenuesValue();
-        double depenses = month.getDepenses();
+        double depenses = month.getDepensesValue();
         double epargnes = month.getEpargne();
         double budget = month.getBudget();
         double charges = computeCharges(month);
@@ -119,9 +117,17 @@ public class Displayer implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
-    @FXML void loadChargesWindow() throws IOException {
+    @FXML
+    void loadChargesWindow() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../View/Charges.fxml"));
         rootPane.getChildren().setAll(pane);
     }
+
+    @FXML
+    void loadDetailsWindow() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../View/Details.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
 
 }

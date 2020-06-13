@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.DetailsController">
+   <children>
+      <BorderPane>
+         <top>
+            <BorderPane BorderPane.alignment="CENTER">
+               <left>
+                  <ImageView fitHeight="150.0" fitWidth="20.0" onMouseClicked="#backWindow" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../assets/left_arrow.png" />
+                     </image>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </ImageView>
+               </left>
+               <center>
+                  <Label fx:id="title" alignment="CENTER" prefWidth="580.0" text="DETAILS DE " BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </top>
+         <center>
+            <GridPane prefWidth="552.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="144.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="260.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="112.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" top="30.0" />
+               </BorderPane.margin>
+               <children>
+                  <Label text="REVENUS :" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets top="15.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ListView fx:id="listViewRev" maxHeight="130.0" minHeight="13.0" prefWidth="153.0" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </ListView>
+                  <Label layoutX="10.0" layoutY="148.0" text="DEPENSES :" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets top="15.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ListView fx:id="listViewDep" layoutX="146.0" layoutY="10.0" maxHeight="130.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </ListView>
+                  <ListView fx:id="listViewRevMontant" layoutX="151.0" layoutY="20.0" maxHeight="130.0" minHeight="13.0" prefWidth="153.0" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </ListView>
+                  <ListView fx:id="listViewDepMontant" maxHeight="130.0" minHeight="13.0" prefWidth="153.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </ListView>
+               </children>
+               <padding>
+                  <Insets right="80.0" />
+               </padding>
+            </GridPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
