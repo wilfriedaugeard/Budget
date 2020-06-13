@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import sample.Model.ICategory;
 import sample.Model.IPeriode;
 import sample.Model.Montant;
 
@@ -14,9 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DetailsController implements Initializable {
     private static final int LIST_CELL_HEIGHT = 26;
@@ -49,9 +48,21 @@ public class DetailsController implements Initializable {
     }
 
     public void addToListView(ArrayList<Montant> list, ListView<String> label, ListView<String> montant){
+        HashMap<ICategory, Double> categoryList = new HashMap<>();
+        ArrayList<ICategory> category = new ArrayList<>();
         for(Montant m : list){
-            label.getItems().add(m.getCategory().getName());
-            montant.getItems().add(df.format(m.getValue())+" €");
+            if(categoryList.containsKey(m.getCategory())){
+                double value = categoryList.get(m.getCategory());
+                categoryList.put(m.getCategory(), value+m.getValue());
+            }
+            else{
+                categoryList.put(m.getCategory(), m.getValue());
+                category.add(m.getCategory());
+            }
+        }
+        for(ICategory c : category){
+            label.getItems().add(c.getName());
+            montant.getItems().add(df.format(categoryList.get(c))+" €");
         }
     }
 

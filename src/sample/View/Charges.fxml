@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ChargesController">
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/styleSheet/bootstrap.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ChargesController">
    <children>
       <BorderPane>
          <top>
@@ -22,27 +22,27 @@
                   </ImageView>
                </left>
                <center>
-                  <Label alignment="CENTER" prefWidth="600.0" text="AJOUTER ou SUPPRIMER CHARGES/REVENUS RECURRENTS" BorderPane.alignment="CENTER" />
+                  <Label alignment="CENTER" prefWidth="580.0" text="AJOUTER ou SUPPRIMER CHARGES/REVENUS RECURRENTS" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </top>
          <center>
-            <TabPane>
+            <TabPane prefHeight="360.0" prefWidth="600.0">
                <tabs>
                   <Tab closable="false" text="Charges">
                      <content>
-                        <AnchorPane>
+                        <AnchorPane minWidth="-Infinity" prefWidth="550.0">
                            <children>
-                              <GridPane alignment="CENTER_RIGHT" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" BorderPane.alignment="CENTER">
+                              <GridPane alignment="CENTER_RIGHT" maxWidth="570.0" prefWidth="550.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0" BorderPane.alignment="CENTER">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="153.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="141.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="0.0" prefWidth="195.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="112.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="0.0" prefWidth="159.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="144.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -53,18 +53,27 @@
                                  </BorderPane.margin>
                                  <children>
                                     <Label text="Nom de la charge:" />
-                                    <Label text="Montant :" GridPane.rowIndex="1" />
+                                    <Label text="Montant :" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets top="5.0" />
+                                       </GridPane.margin></Label>
                                     <TextField fx:id="chargeToAddTF" GridPane.columnIndex="1" />
-                                    <TextField fx:id="montantTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="montantTF" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets top="5.0" />
+                                       </GridPane.margin></TextField>
                                     <Label text="€" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
+                                          <Insets left="5.0" right="5.0" top="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterCharge" prefHeight="25.0" prefWidth="86.0" text="Ajouter " textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterCharge" prefHeight="25.0" prefWidth="86.0" styleClass="success" text="Ajouter " textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets top="5.0" />
+                                       </GridPane.margin></Button>
                                     <Label prefHeight="15.0" prefWidth="156.0" text="Charge à supprimer :" GridPane.rowIndex="4" />
                                     <ChoiceBox fx:id="choiceBoxCharge" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerCharge" text="Supprimer" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerCharge" styleClass="danger" text="Supprimer" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                                     <Label fx:id="chargeAddName" text="Label" textFill="#05ab03" visible="false" GridPane.rowIndex="2" />
                                     <Label fx:id="montantAddLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Label" textFill="#05ab03" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label fx:id="chargeDelName" text="Label" textFill="#aa2603" visible="false" GridPane.rowIndex="5" />
@@ -78,21 +87,30 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <GridPane alignment="CENTER_RIGHT" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" BorderPane.alignment="CENTER">
+                              <GridPane alignment="CENTER_RIGHT" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <Label text="Nom du revenu:" />
-                                    <Label text="Montant :" GridPane.rowIndex="1" />
+                                    <Label text="Montant :" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets top="5.0" />
+                                       </GridPane.margin></Label>
                                     <TextField fx:id="revenuToAddTF" GridPane.columnIndex="1" />
-                                    <TextField fx:id="montantRTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="montantRTF" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets top="5.0" />
+                                       </GridPane.margin></TextField>
                                     <Label text="€" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
+                                          <Insets left="5.0" right="5.0" top="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterRevenu" prefHeight="25.0" prefWidth="86.0" text="Ajouter " textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterRevenu" prefHeight="25.0" prefWidth="86.0" styleClass="success" text="Ajouter " textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets top="5.0" />
+                                       </GridPane.margin></Button>
                                     <Label prefHeight="15.0" prefWidth="156.0" text="Revenu à supprimer :" GridPane.rowIndex="4" />
                                     <ChoiceBox fx:id="choiceBoxRevenu" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerRevenu" text="Supprimer" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#supprimerRevenu" styleClass="danger" text="Supprimer" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                                     <Label fx:id="revenuAddName" text="Label" textFill="#05ab03" visible="false" GridPane.rowIndex="2" />
                                     <Label fx:id="montantRAddLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Label" textFill="#05ab03" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label fx:id="revenuDelName" text="Label" textFill="#aa2603" visible="false" GridPane.rowIndex="5" />
@@ -100,12 +118,12 @@
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="153.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="141.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="0.0" prefWidth="195.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="112.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="0.0" prefWidth="159.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="144.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

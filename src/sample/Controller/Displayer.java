@@ -57,7 +57,7 @@ public class Displayer implements Initializable {
         String yearString = controller.getGlobalPeriode().get(controller.getYearCursor()).getName();
         String monthString = controller.getGlobalPeriode().get(controller.getYearCursor()).getChild(controller.getMonthCursor()).getName();
         String date = monthString +" "+yearString;
-        dateLabel.setText(date);
+        dateLabel.setText(date.toUpperCase());
 
         displayMonthRecap();
         displayCurrentmonth();

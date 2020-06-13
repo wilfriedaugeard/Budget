@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Displayer">
+<AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@../assets/styleSheet/bootstrap.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.Displayer">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
          <bottom>
@@ -30,7 +30,6 @@
                               <GridPane alignment="CENTER_LEFT" style="border-left: 1px;">
                                  <children>
                                     <Label text="Dépenses :" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Epargnes :" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
                                     <Label text="Revenues :" GridPane.halignment="LEFT" />
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                        <children>
@@ -51,12 +50,6 @@
                                        </children>
                                     </HBox>
                                     <Label text="Charges :" GridPane.rowIndex="2" />
-                                    <HBox alignment="CENTER" layoutX="110.0" layoutY="70.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                       <children>
-                                          <Label fx:id="currentEpargnes" text="Label" />
-                                          <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="15.0" prefWidth="20.0" text="€" />
-                                       </children>
-                                    </HBox>
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -71,20 +64,27 @@
                               </GridPane>
                               <GridPane alignment="CENTER_LEFT" prefWidth="250.0">
                                  <children>
-                                    <Label text="Epargne total :" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-                                    <Label text="Budget restant :" GridPane.halignment="LEFT" />
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                    <Label text="Epargne total :" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                    <Label text="Budget restant :" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <children>
                                           <Label fx:id="currentBudget" text="Label" />
                                           <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="20.0" text="€" textAlignment="CENTER" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
                                           <Label fx:id="epargnesTotal" text="Label" />
                                           <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="15.0" prefWidth="20.0" text="€" />
                                        </children>
                                     </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <Label fx:id="currentEpargnes" text="Label" />
+                                          <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="15.0" prefWidth="20.0" text="€" />
+                                       </children>
+                                    </HBox>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Epargnes :" GridPane.halignment="LEFT" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -94,9 +94,13 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </HBox>
                      </children>
                      <padding>
@@ -105,7 +109,7 @@
                   </VBox>
                </children>
                <BorderPane.margin>
-                  <Insets top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </BorderPane.margin></Pane>
          </bottom>
          <top>
@@ -126,7 +130,7 @@
                <items>
                   <BorderPane prefWidth="200.0">
                      <top>
-                        <HBox alignment="CENTER" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: f0f0f0; -fx-border-width: 1px; -fx-border-color: #000;" BorderPane.alignment="CENTER">
+                        <HBox alignment="CENTER" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #fff; -fx-border-width: 1px; -fx-border-color: #000;" BorderPane.alignment="CENTER">
                            <children>
                               <ImageView fitHeight="15.0" fitWidth="20.0" onMouseClicked="#previousMonth" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -136,7 +140,10 @@
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" text="Mars" />
+                              <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" text="Mars">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
                               <ImageView fx:id="rightArrow" fitHeight="15.0" fitWidth="20.0" onMouseClicked="#nextMonth" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../assets/right_arrow.png" />
@@ -152,7 +159,7 @@
                         </HBox>
                      </top>
                      <center>
-                        <GridPane style="-fx-border-color: #000;" BorderPane.alignment="CENTER">
+                        <GridPane style="-fx-border-color: #000; -fx-background-color: #fff;" BorderPane.alignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
