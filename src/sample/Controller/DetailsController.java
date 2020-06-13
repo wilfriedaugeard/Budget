@@ -52,8 +52,8 @@ public class DetailsController implements Initializable {
         ArrayList<ICategory> category = new ArrayList<>();
         for(Montant m : list){
             if(categoryList.containsKey(m.getCategory())){
-                double value = categoryList.get(m.getCategory());
-                categoryList.put(m.getCategory(), value+m.getValue());
+                double v = categoryList.get(m.getCategory());
+                categoryList.put(m.getCategory(), v+m.getValue());
             }
             else{
                 categoryList.put(m.getCategory(), m.getValue());

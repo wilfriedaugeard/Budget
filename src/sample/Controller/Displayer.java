@@ -129,5 +129,11 @@ public class Displayer implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    @FXML
+    void loadStatsWindow() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../View/Stats.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
 
 }

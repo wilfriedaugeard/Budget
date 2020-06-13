@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/styleSheet/bootstrap.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.StatsController">
+   <children>
+      <BorderPane>
+         <top>
+            <BorderPane BorderPane.alignment="CENTER">
+               <left>
+                  <ImageView fitHeight="150.0" fitWidth="20.0" onMouseClicked="#backWindow" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </BorderPane.margin>
+                     <image>
+                        <Image url="@../assets/left_arrow.png" />
+                     </image>
+                  </ImageView>
+               </left>
+               <center>
+                  <Label alignment="CENTER" prefWidth="580.0" text="STATISTIQUES" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets right="-2.0" />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+               </center>
+            </BorderPane>
+         </top>
+         <center>
+            <TabPane prefHeight="360.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Revenus">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <PieChart fx:id="pieChartRev" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Dépenses">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <PieChart fx:id="pieChartDep" layoutY="-80.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
