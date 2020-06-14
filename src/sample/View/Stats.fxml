@@ -7,7 +7,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/styleSheet/bootstrap.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.StatsController">
    <children>
       <BorderPane>
@@ -42,7 +41,12 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <PieChart fx:id="pieChartRev" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                              <HBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <PieChart fx:id="pieChartRev" />
+                                    <ChoiceBox fx:id="revChoice" prefWidth="173.0" />
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                   </content>
@@ -51,7 +55,12 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <PieChart fx:id="pieChartDep" layoutY="-80.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                              <HBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <PieChart fx:id="pieChartDep" />
+                                    <ChoiceBox fx:id="depChoice" prefWidth="173.0" />
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                   </content>
