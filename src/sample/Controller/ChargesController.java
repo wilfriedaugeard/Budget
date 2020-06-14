@@ -7,7 +7,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import sample.Model.Category;
+import sample.Factory.CategoryFactory;
+import sample.Factory.MontantFactory;
 import sample.Model.Montant;
 
 import java.io.IOException;
@@ -79,7 +80,7 @@ public class ChargesController implements Initializable {
             montantString = montantString.replace(",",".");
 
             double montantValue = Double.parseDouble(montantString);
-            controller.addRecurrent(new Montant(new Category(nameString),montantValue),isRevenu);
+            controller.addRecurrent(MontantFactory.createMontant(CategoryFactory.createCategory(nameString),montantValue),isRevenu);
 
 
             labeladdName.setText(nameString+" de: ");

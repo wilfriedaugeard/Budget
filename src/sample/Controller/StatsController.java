@@ -1,6 +1,5 @@
 package sample.Controller;
 
-import com.oracle.xmlns.internal.webservices.jaxws_databinding.XmlOneway;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,16 +15,12 @@ import sample.Model.ICategory;
 import sample.Model.IPeriode;
 import sample.Model.Montant;
 
-
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.*;
 
 public class StatsController implements Initializable {
     private IController controller;
-    private DecimalFormat df;
     private HashMap<ICategory, Double> categoryList;
     private ArrayList<ICategory> category;
     private ArrayList<ArrayList<Montant>> listRev;
@@ -47,8 +42,6 @@ public class StatsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controller = Controller.getController();
-        df = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.ENGLISH));
-        df.setMaximumFractionDigits(2);
         categoryList = new HashMap<>();
         category = new ArrayList<>();
         listRev = new ArrayList<>();

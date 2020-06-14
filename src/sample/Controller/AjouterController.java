@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import sample.Factory.CategoryFactory;
+import sample.Factory.MontantFactory;
 import sample.Model.Category;
 import sample.Model.ICategory;
 import sample.Model.IPeriode;
@@ -109,7 +111,7 @@ public class AjouterController implements Initializable {
             int choice = revenusChoiceBox.getSelectionModel().getSelectedIndex();
             int i = controller.getYearCursor();
             IPeriode m = controller.getGlobalPeriode().get(i).getChild(controller.getMonthCursor());
-            m.addRevenues(new Montant(controller.getRevenuesCategory().getChild(choice), montant));
+            m.addRevenues(MontantFactory.createMontant(controller.getRevenuesCategory().getChild(choice), montant));
             if(controller.getRevenuesCategory().getChild(choice).getName().equals("Mouvement épargne")){
                 m.addEpargne(-montant);
             }
@@ -142,7 +144,7 @@ public class AjouterController implements Initializable {
             int choice = depensesChoiceBox.getSelectionModel().getSelectedIndex();
             int i = controller.getYearCursor();
             IPeriode m = controller.getGlobalPeriode().get(i).getChild(controller.getMonthCursor());
-            m.addDepenses(new Montant(controller.getDepensesCategory().getChild(choice), montant));
+            m.addDepenses(MontantFactory.createMontant(controller.getDepensesCategory().getChild(choice), montant));
             if(controller.getDepensesCategory().getChild(choice).getName().equals("Mouvement épargne")){
                 m.addEpargne(montant);
             }
@@ -193,7 +195,7 @@ public class AjouterController implements Initializable {
     public void createCategory(ICategory globalCategory, TextField tf, Button plusBtn, Button createBtn, String text){
         String stringCategory= tf.getText();
         if(!stringCategory.isEmpty()){
-            globalCategory.add(globalCategory.getChildren().size()-1, new Category(stringCategory));
+            globalCategory.add(globalCategory.getChildren().size()-1, CategoryFactory.createCategory(stringCategory));
             display();
         }
         plusBtn.setText(text);
