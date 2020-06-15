@@ -169,6 +169,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label text="CHARGES :" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
@@ -199,6 +200,13 @@
                                  </children>
                               </HBox>
                               <Label alignment="CENTER" contentDisplay="CENTER" text="DEPENSES :" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Label text="Budget :" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                              <HBox alignment="CENTER" layoutX="143.0" layoutY="64.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <Label fx:id="budgetLabel" text="Label" />
+                                    <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="15.0" prefWidth="20.0" text="€" />
+                                 </children>
+                              </HBox>
                            </children>
                         </GridPane>
                      </center>

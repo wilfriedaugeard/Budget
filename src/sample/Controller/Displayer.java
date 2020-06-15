@@ -32,6 +32,8 @@ public class Displayer implements Initializable {
     @FXML
     private Label epargnesLabel;
     @FXML
+    private Label budgetLabel;
+    @FXML
     private Label currentRevenues;
     @FXML
     private Label currentDepenses;
@@ -77,11 +79,13 @@ public class Displayer implements Initializable {
         double depenses = month.getDepensesValue();
         double epargnes = month.getEpargne();
         double charges = computeCharges(month);
+        double budget = month.getBudget();
 
         revenuesLabel.setText(df.format(revenues));
         chargesLabel.setText(df.format(charges));
         depensesLabel.setText(df.format(depenses));
         epargnesLabel.setText(df.format(epargnes));
+        budgetLabel.setText(df.format(budget));
     }
 
     public void displayCurrentmonth(){
