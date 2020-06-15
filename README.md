@@ -1,7 +1,7 @@
 # Budget software
 ![baniere](https://github.com/wilfriedaugeard/Budget/blob/master/assets/baniere.jpg)
 <p align="center">
-<img alt="Version : 1.0.0" src="https://img.shields.io/badge/version-1.0.0-green" target="_blank" />
+<img alt="Version : 1.0.2" src="https://img.shields.io/badge/version-1.0.0-green" target="_blank" />
   <img alt="Java" src="https://img.shields.io/badge/Java-v1.8-blue?logo=java&logoColor=white" target="_blank" />
 <a href="https://github.com/wilfriedaugeard/Budget/blob/master/LICENSE">
     <img alt="License: GNU" src="https://img.shields.io/badge/License-GNU-yellow.svg" />
@@ -66,7 +66,7 @@ You can find month details.
 You can find month statistics and choose what you want to see.
 
 <p align="center">
-  <img alt="menu" src="https://github.com/wilfriedaugeard/Budget/blob/master/assets/stats2.png"/>
+  <img alt="menu" src="https://github.com/wilfriedaugeard/Budget/blob/master/assets/stats.png"/>
 </p>
 
 ## Installation
