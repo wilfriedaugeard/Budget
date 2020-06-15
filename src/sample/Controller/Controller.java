@@ -239,8 +239,8 @@ public class Controller implements IController, Serializable {
     }
 
     public void addRecurrent(Montant montant, boolean isRevenu){
-        int j = currentMonthCursor;
-        for(int i = currentYearCursor; i<globalPeriode.size(); i++){
+        int j = monthCursor;
+        for(int i = yearCursor; i<globalPeriode.size(); i++){
             while(j<12){
                 if(isRevenu){
                     globalPeriode.get(i).getChild(j).addRevenuesRec(montant);

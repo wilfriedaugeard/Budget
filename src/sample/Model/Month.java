@@ -103,9 +103,9 @@ public class Month implements IPeriode, Serializable {
                 if(m.getValue() == r.getValue()){
                     return;
                 }
-                int i = revenuesRec.indexOf(m);
-                revenuesRec.set(i, r);
-                budget+=m.getValue();
+                removeRevenuRec(m);
+                revenuesRec.add(r);
+                budget+=r.getValue();
                 return;
             }
         }
@@ -131,9 +131,9 @@ public class Month implements IPeriode, Serializable {
                 if(m.getValue() == c.getValue()){
                     return;
                 }
-                int i = charges.indexOf(m);
-                charges.set(i, c);
-                budget-=m.getValue();
+                removeCharges(m);
+                charges.add(c);
+                budget-=c.getValue();
                 return;
             }
         }

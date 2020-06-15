@@ -10,15 +10,10 @@ public class View {
     private Scene scene;
     private Parent root;
     private FXMLLoader fxmlLoader;
-    private int width;
-    private int height;
-
 
 
     /* Constructor */
     public View(String fxml_file, int width, int height) throws IOException {
-        this.width = width;
-        this.height = height;
         loadFXML(fxml_file);
         this.scene = new Scene(root,width, height);
     }
@@ -29,9 +24,6 @@ public class View {
         return scene;
     }
 
-    public FXMLLoader getFxmlLoader() {
-        return fxmlLoader;
-    }
 
     public void loadFXML(String fxml_file) throws IOException {
         this.fxmlLoader = new FXMLLoader(getClass().getResource(fxml_file));
