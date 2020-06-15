@@ -1,10 +1,12 @@
 package sample.Controller;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import sample.Model.ICategory;
 import sample.Model.IPeriode;
@@ -28,13 +30,17 @@ public class DetailsController implements Initializable {
     @FXML
     private Label title;
     @FXML
-    private ListView<String> listViewRev;
+    private TableView<ICategory> revTable;
     @FXML
-    private ListView<String> listViewDep;
+    private TableView<ICategory> depTable;
     @FXML
-    private ListView<String> listViewRevMontant;
+    private TableColumn<ICategory, String> listViewRev;
     @FXML
-    private ListView<String> listViewDepMontant;
+    private TableColumn<ICategory, String> listViewDep;
+    @FXML
+    private TableColumn<ICategory, String> listViewRevMontant;
+    @FXML
+    private TableColumn<ICategory, String> listViewDepMontant;
 
 
 
@@ -47,9 +53,7 @@ public class DetailsController implements Initializable {
 
     }
 
-    public void addToListView(ArrayList<Montant> list, ListView<String> label, ListView<String> montant){
-        HashMap<ICategory, Double> categoryList = new HashMap<>();
-        ArrayList<ICategory> category = new ArrayList<>();
+    public void putInList(HashMap<ICategory, Double> categoryList, ArrayList<ICategory> category, ArrayList<Montant> list){
         for(Montant m : list){
             if(categoryList.containsKey(m.getCategory())){
                 double v = categoryList.get(m.getCategory());
@@ -60,9 +64,26 @@ public class DetailsController implements Initializable {
                 category.add(m.getCategory());
             }
         }
+    }
+
+    public void addToListView(ArrayList<Montant> list, ArrayList<Montant> listRec,TableColumn<ICategory, String> label, TableColumn<ICategory, String> montant, TableView<ICategory> table){
+        HashMap<ICategory, Double> categoryList = new HashMap<>();
+        ArrayList<ICategory> category = new ArrayList<>();
+        putInList(categoryList, category, listRec);
+        putInList(categoryList, category, list);
+
+
         for(ICategory c : category){
-            label.getItems().add(c.getName());
-            montant.getItems().add(df.format(categoryList.get(c))+" €");
+            table.getItems().add(c);
+            label.setCellValueFactory(param -> {
+                final ICategory cat = param.getValue();
+                return new SimpleStringProperty(cat.getName());
+            });
+            montant.setCellValueFactory(param -> {
+                ICategory cat = param.getValue();
+                String val = df.format(categoryList.get(cat))+" €";
+                return new SimpleStringProperty(val);
+            });
         }
     }
 
@@ -70,20 +91,9 @@ public class DetailsController implements Initializable {
         IPeriode month = controller.getGlobalPeriode().get(controller.getYearCursor()).getChild(controller.getMonthCursor());
         String winTitle = "Détails du mois de "+month.getName();
         title.setText(winTitle.toUpperCase());
-        addToListView(month.getRevenuesRec(),listViewRev, listViewRevMontant);
-        addToListView(month.getRevenues(),listViewRev, listViewRevMontant);
-        if(listViewRev.getItems().size() == 0){
-            listViewRev.getItems().add("Aucun revenu pour "+month.getName());
-            listViewRevMontant.setVisible(false);
-            listViewRev.setMaxHeight(LIST_CELL_HEIGHT);
-        }
-        addToListView(month.getCharges(),listViewDep, listViewDepMontant);
-        addToListView(month.getDepenses(),listViewDep, listViewDepMontant);
-        if(listViewDep.getItems().size() == 0){
-            listViewDep.getItems().add("Aucune dépense pour "+month.getName());
-            listViewDepMontant.setVisible(false);
-            listViewDep.setMaxHeight(LIST_CELL_HEIGHT);
-        }
+        addToListView(month.getRevenues(), month.getRevenuesRec(),listViewRev, listViewRevMontant, revTable);
+        addToListView(month.getDepenses(), month.getCharges(),listViewDep, listViewDepMontant, depTable);
+
 
     }
 

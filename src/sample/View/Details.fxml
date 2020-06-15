@@ -27,11 +27,10 @@
             </BorderPane>
          </top>
          <center>
-            <GridPane prefWidth="552.0" BorderPane.alignment="CENTER">
+            <GridPane maxHeight="330.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="144.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="260.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="112.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="176.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" percentWidth="0.0" prefWidth="331.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -43,37 +42,35 @@
                <children>
                   <Label text="REVENUS :" GridPane.valignment="TOP">
                      <GridPane.margin>
-                        <Insets top="15.0" />
+                        <Insets top="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <ListView fx:id="listViewRev" maxHeight="130.0" minHeight="13.0" prefWidth="153.0" GridPane.columnIndex="1" GridPane.valignment="TOP">
-                     <GridPane.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </GridPane.margin>
-                  </ListView>
                   <Label layoutX="10.0" layoutY="148.0" text="DEPENSES :" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
-                        <Insets top="15.0" />
+                        <Insets top="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <ListView fx:id="listViewDep" layoutX="146.0" layoutY="10.0" maxHeight="130.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <TableView fx:id="revTable" GridPane.columnIndex="1">
+                    <columns>
+                      <TableColumn fx:id="listViewRev" prefWidth="193.0" text="Libellé" />
+                      <TableColumn fx:id="listViewRevMontant" prefWidth="138.0" text="Montant" />
+                    </columns>
                      <GridPane.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" />
                      </GridPane.margin>
-                  </ListView>
-                  <ListView fx:id="listViewRevMontant" layoutX="151.0" layoutY="20.0" maxHeight="130.0" minHeight="13.0" prefWidth="153.0" GridPane.columnIndex="2">
+                  </TableView>
+                  <TableView fx:id="depTable" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <columns>
+                        <TableColumn fx:id="listViewDep" prefWidth="195.0" text="Libellé" />
+                        <TableColumn fx:id="listViewDepMontant" prefWidth="138.0" text="Montant" />
+                     </columns>
                      <GridPane.margin>
-                        <Insets right="10.0" />
+                        <Insets bottom="10.0" />
                      </GridPane.margin>
-                  </ListView>
-                  <ListView fx:id="listViewDepMontant" maxHeight="130.0" minHeight="13.0" prefWidth="153.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </ListView>
+                  </TableView>
                </children>
                <padding>
-                  <Insets right="80.0" />
+                  <Insets right="70.0" />
                </padding>
             </GridPane>
          </center>
