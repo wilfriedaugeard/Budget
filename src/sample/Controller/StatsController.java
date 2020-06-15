@@ -79,12 +79,14 @@ public class StatsController implements Initializable {
         pieChart.setTitle(text+" du mois de "+month.getName());
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         for(ICategory c : category){
-            pieChartData.add(new PieChart.Data(c.getName(), categoryList.get(c)*100/value));
+            PieChart.Data data = new PieChart.Data(c.getName(), categoryList.get(c)*100/value);
+            pieChartData.add(data);
         }
         pieChart.setData(pieChartData);
         pieChart.getData().forEach(data -> {
             String percentage = String.format("%.2f%%", (data.getPieValue()));
-            Tooltip toolTip = new Tooltip(percentage);
+            String montant = String.format("%.2f",(data.getPieValue()/100*value));
+            Tooltip toolTip = new Tooltip(data.getName().toUpperCase()+"\n"+montant+"€ ("+percentage+")");
             Tooltip.install(data.getNode(), toolTip);
         });
     }
