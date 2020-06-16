@@ -7,7 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +29,7 @@ public class StatsController implements Initializable {
     private ArrayList<ArrayList<Montant>> listDep;
     private double revValue;
     private double depValue;
+    private IPeriode anneeLineChart;
     // View
     @FXML
     private AnchorPane rootPane;
@@ -38,6 +41,8 @@ public class StatsController implements Initializable {
     private PieChart pieChartRev;
     @FXML
     private PieChart pieChartDep;
+    @FXML
+    private LineChart<Montant, String> lineChart;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,9 +51,11 @@ public class StatsController implements Initializable {
         category = new ArrayList<>();
         listRev = new ArrayList<>();
         listDep = new ArrayList<>();
+        anneeLineChart = controller.getGlobalPeriode().get(controller.getYearCursor());
 
         initializeChoiceBoxes();
         refreshPieChart();
+        displayLineChart();
     }
 
     public void initializeChoiceBoxes(){
@@ -150,6 +157,18 @@ public class StatsController implements Initializable {
         displayPieChart(pieChartDep, listDep, month, "Dépenses", depValue);
     }
 
+    public void displayLineChart(){
+        lineChart.setTitle("Globalité sur l'année "+anneeLineChart.getName());
+        XYChart.Series lineRev = new XYChart.Series();
+        XYChart.Series lineDep = new XYChart.Series();
+        lineRev.setName("Revenus");
+        lineDep.setName("Dépenses");
+        for (IPeriode m : anneeLineChart.getChildren()){
+            lineRev.getData().add(new XYChart.Data<>(m.getName(), m.getRevenuesValue()));
+            lineDep.getData().add(new XYChart.Data<>(m.getName(), m.getTotalDepenses()));
+        }
+        lineChart.getData().addAll(lineRev, lineDep);
+    }
 
     public void refreshPieChart(){
         loadList();

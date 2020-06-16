@@ -70,6 +70,16 @@ public class Year implements IPeriode, Serializable {
     }
 
     @Override
+    public double getChargeValue() {
+        return 0;
+    }
+
+    @Override
+    public double getTotalDepenses() {
+        return 0;
+    }
+
+    @Override
     public void setBudget(double m) {
 
     }

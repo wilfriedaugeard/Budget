@@ -12,6 +12,8 @@ public interface IPeriode {
     public double getEpargne();
     public double getBudget();
     public ArrayList<Montant> getCharges();
+    public double getChargeValue();
+    public double getTotalDepenses();
 
     public void setBudget(double m);
     public void setEpargne(double m);

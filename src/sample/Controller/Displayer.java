@@ -65,20 +65,13 @@ public class Displayer implements Initializable {
         displayCurrentmonth();
     }
 
-    public double computeCharges(IPeriode month){
-        double charges = 0;
-        for(Montant m : month.getCharges()){
-            charges += m.getValue();
-        }
-        return charges;
-    }
 
     public void displayMonthRecap(){
         IPeriode month = controller.getGlobalPeriode().get(controller.getYearCursor()).getChild(controller.getMonthCursor());
         double revenues = month.getRevenuesValue();
         double depenses = month.getDepensesValue();
         double epargnes = month.getEpargne();
-        double charges = computeCharges(month);
+        double charges = month.getChargeValue();
         double budget = month.getBudget();
 
         revenuesLabel.setText(df.format(revenues));
@@ -94,7 +87,7 @@ public class Displayer implements Initializable {
         double depenses = month.getDepensesValue();
         double epargnes = month.getEpargne();
         double budget = month.getBudget();
-        double charges = computeCharges(month);
+        double charges = month.getChargeValue();
         currentRevenues.setText(df.format(revenues));
         currentDepenses.setText(df.format(depenses));
         currentCharges.setText(df.format(charges));

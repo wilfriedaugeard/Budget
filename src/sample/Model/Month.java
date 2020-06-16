@@ -125,6 +125,20 @@ public class Month implements IPeriode, Serializable {
     }
 
     @Override
+    public double getChargeValue(){
+        double charges = 0;
+        for(Montant m : getCharges()){
+            charges += m.getValue();
+        }
+        return charges;
+    }
+
+    @Override
+    public double getTotalDepenses(){
+        return getDepensesValue()+getChargeValue();
+    }
+
+    @Override
     public void addCharges(Montant c) {
         for(Montant m : getCharges()){
             if(m.getCategory().getName().equals(c.getCategory().getName())){
